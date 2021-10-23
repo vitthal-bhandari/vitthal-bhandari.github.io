@@ -220,7 +220,7 @@ export default function Home() {
                     >
                     </i>
                   </a>
-                  <Link target="_blank" href="https://github.com/Vitthal98">
+                  <Link target="_blank" href="https://github.com/vitthal-bhandari">
                     <FontAwesomeIcon
                       icon={faGithubSquare}
                       size="2x"
