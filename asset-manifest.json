@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.a617e044.chunk.css",
-    "main.js": "/static/js/main.a43d1f7c.chunk.js",
-    "main.js.map": "/static/js/main.a43d1f7c.chunk.js.map",
+    "main.js": "/static/js/main.bd834379.chunk.js",
+    "main.js.map": "/static/js/main.bd834379.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.837f9015.js",
     "runtime-main.js.map": "/static/js/runtime-main.837f9015.js.map",
     "static/js/2.e01fc1ff.chunk.js": "/static/js/2.e01fc1ff.chunk.js",
@@ -13,6 +13,7 @@
     "static/css/main.a617e044.chunk.css.map": "/static/css/main.a617e044.chunk.css.map",
     "static/js/2.e01fc1ff.chunk.js.LICENSE.txt": "/static/js/2.e01fc1ff.chunk.js.LICENSE.txt",
     "static/media/Vitthal_CV_Data_Science.1c00c4aa.pdf": "/static/media/Vitthal_CV_Data_Science.1c00c4aa.pdf",
+    "static/media/avatar.19b2972b.png": "/static/media/avatar.19b2972b.png",
     "static/media/bitspilani.0ad2caa4.png": "/static/media/bitspilani.0ad2caa4.png",
     "static/media/isro1.50d0dee5.png": "/static/media/isro1.50d0dee5.png",
     "static/media/paypal.3acce147.png": "/static/media/paypal.3acce147.png",
@@ -23,6 +24,6 @@
     "static/js/runtime-main.837f9015.js",
     "static/js/2.e01fc1ff.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.a43d1f7c.chunk.js"
+    "static/js/main.bd834379.chunk.js"
   ]
 }
