@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.a617e044.chunk.css",
-    "main.js": "/static/js/main.d38ff2b5.chunk.js",
-    "main.js.map": "/static/js/main.d38ff2b5.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1a9e59f9.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1a9e59f9.js.map",
-    "static/js/2.9c4170b8.chunk.js": "/static/js/2.9c4170b8.chunk.js",
-    "static/js/2.9c4170b8.chunk.js.map": "/static/js/2.9c4170b8.chunk.js.map",
-    "static/js/3.253cc001.chunk.js": "/static/js/3.253cc001.chunk.js",
-    "static/js/3.253cc001.chunk.js.map": "/static/js/3.253cc001.chunk.js.map",
+    "main.js": "/static/js/main.dd0dd49f.chunk.js",
+    "main.js.map": "/static/js/main.dd0dd49f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d4803c17.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d4803c17.js.map",
+    "static/js/2.944dd5ae.chunk.js": "/static/js/2.944dd5ae.chunk.js",
+    "static/js/2.944dd5ae.chunk.js.map": "/static/js/2.944dd5ae.chunk.js.map",
+    "static/js/3.ad51b1ae.chunk.js": "/static/js/3.ad51b1ae.chunk.js",
+    "static/js/3.ad51b1ae.chunk.js.map": "/static/js/3.ad51b1ae.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.a617e044.chunk.css.map": "/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.9c4170b8.chunk.js.LICENSE.txt": "/static/js/2.9c4170b8.chunk.js.LICENSE.txt",
+    "static/js/2.944dd5ae.chunk.js.LICENSE.txt": "/static/js/2.944dd5ae.chunk.js.LICENSE.txt",
     "static/media/Vitthal_AI_CV.5841ac4f.pdf": "/static/media/Vitthal_AI_CV.5841ac4f.pdf",
     "static/media/avatar.19b2972b.png": "/static/media/avatar.19b2972b.png",
     "static/media/bitspilani.0ad2caa4.png": "/static/media/bitspilani.0ad2caa4.png",
@@ -20,13 +20,13 @@
     "static/media/book3.3ecf3a46.png": "/static/media/book3.3ecf3a46.png",
     "static/media/isro1.50d0dee5.png": "/static/media/isro1.50d0dee5.png",
     "static/media/paypal.3acce147.png": "/static/media/paypal.3acce147.png",
-    "static/media/scb.d8a22f11.png": "/static/media/scb.d8a22f11.png",
-    "static/media/vitthal-bw.68ff3d11.jpg": "/static/media/vitthal-bw.68ff3d11.jpg"
+    "static/media/profile-pic.ec92f857.png": "/static/media/profile-pic.ec92f857.png",
+    "static/media/scb.d8a22f11.png": "/static/media/scb.d8a22f11.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1a9e59f9.js",
-    "static/js/2.9c4170b8.chunk.js",
+    "static/js/runtime-main.d4803c17.js",
+    "static/js/2.944dd5ae.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.d38ff2b5.chunk.js"
+    "static/js/main.dd0dd49f.chunk.js"
   ]
 }
