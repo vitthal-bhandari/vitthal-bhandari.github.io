@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.a617e044.chunk.css",
-    "main.js": "/static/js/main.ce8cdf86.chunk.js",
-    "main.js.map": "/static/js/main.ce8cdf86.chunk.js.map",
+    "main.js": "/static/js/main.ed940dd2.chunk.js",
+    "main.js.map": "/static/js/main.ed940dd2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d4803c17.js",
     "runtime-main.js.map": "/static/js/runtime-main.d4803c17.js.map",
     "static/js/2.944dd5ae.chunk.js": "/static/js/2.944dd5ae.chunk.js",
@@ -18,7 +18,7 @@
     "static/media/book1.a7690907.png": "/static/media/book1.a7690907.png",
     "static/media/book2.aa4d5f7b.png": "/static/media/book2.aa4d5f7b.png",
     "static/media/book3.3ecf3a46.png": "/static/media/book3.3ecf3a46.png",
-    "static/media/isro1.50d0dee5.png": "/static/media/isro1.50d0dee5.png",
+    "static/media/isro2.2fd2bbe0.png": "/static/media/isro2.2fd2bbe0.png",
     "static/media/paypal.3acce147.png": "/static/media/paypal.3acce147.png",
     "static/media/profile-pic.ec92f857.png": "/static/media/profile-pic.ec92f857.png",
     "static/media/scb.d8a22f11.png": "/static/media/scb.d8a22f11.png"
@@ -27,6 +27,6 @@
     "static/js/runtime-main.d4803c17.js",
     "static/js/2.944dd5ae.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.ce8cdf86.chunk.js"
+    "static/js/main.ed940dd2.chunk.js"
   ]
 }
