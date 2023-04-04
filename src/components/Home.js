@@ -367,7 +367,7 @@ export default function Home() {
               <img src={img1} alt="profile_pic" style={{ width: '50%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
               <br></br>
               <Typography className={classes.name}>VITTHAL</Typography>
-              <Typography className={classes.name}>BHANDARI</Typography>
+              <Typography className={classes.name}>BHANDARI...</Typography>
               <br></br>
               <Typography className={classes.subname} style={{ marginTop: '15px' }}>Data Science Analyst</Typography>
               <Typography className={classes.subname}>Standard Chartered Bank</Typography>
