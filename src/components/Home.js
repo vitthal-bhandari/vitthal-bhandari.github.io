@@ -1,19 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Tab, Tabs, Grid, Typography, Box, Link, Divider, Chip, Badge } from '@material-ui/core';
+import { makeStyles , withStyles } from '@material-ui/core/styles';
+import { AppBar, Tab, Tabs, Grid, Typography, Box, Link, Divider, Chip, Badge, List, ListItem, ListItemText, ListItemAvatar , Avatar,
+  ListSubheader, Tooltip, Toolbar, IconButton, Drawer, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+  import MenuIcon from "@material-ui/icons/Menu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubSquare, faLinkedin, faTwitterSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import EmailIcon from '@material-ui/icons/Email';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  Link as RouterLink
+} from 'react-router-dom';
 
-import img1 from '../assets/images/vitthal-bw.jpg';
+import img1 from '../assets/images/blue kurta.png';
 import img_paypal from '../assets/images/paypal.png';
 import img_scb from '../assets/images/scb.png';
-import img_isro from '../assets/images/isro1.png';
+import img_isro from '../assets/images/isro2.png';
 import img_bits from '../assets/images/bitspilani.png';
-import pdf1 from '../assets/CV/Vitthal_CV_Data_Science.pdf';
+import avatar from '../assets/images/avatar.png';
+import pdf1 from '../assets/CV/Bhandari_Vitthal_CV.pdf';
+import book1 from '../assets/images/book1.png';
+import book2 from '../assets/images/book2.png';
+import book3 from '../assets/images/book3.png';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,6 +73,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '60px',
     backgroundColor: '#20232a',
   },
+  drawer: {
+    backgroundColor: '#20232a',
+    color: '#61dafb'
+  },
   tab: {
     minHeight: '59.5px'
   },
@@ -72,22 +87,34 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontFamily: "'Oswald', sans-serif",
     fontWeight: 700,
-    fontSize: '65px',
+    fontSize: '50px',
     padding: '0px',
     textAlign: 'left',
-    lineHeight: '50pt',
+    lineHeight: '40pt',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   subname: {
     fontFamily: "'Roboto', sans-serif",
     fontWeight: 300,
     textAlign: 'left',
     lineHeight: '20pt',
-    fontSize: '13pt'
+    fontSize: '13pt',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   bio: {
     fontFamily: "'Roboto', sans-serif",
-    fontWeight: 300,
-    fontSize: '13pt',
+    fontWeight: 400,
+    fontSize: '12pt',
+    textAlign: 'justify',
+  },
+  accordionbio: {
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: 400,
+    fontSize: '11pt',
     textAlign: 'justify',
   },
   links: {
@@ -168,24 +195,153 @@ const useStyles = makeStyles((theme) => ({
   customBadge: {
     backgroundColor: "#61dafb",
     color: "white"
+  },
+  book: {
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: 400,
+    fontSize: '0.875rem',
+    textAlign: 'left',
+  },
+  news: {
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: 300,
+    fontSize: '13pt',
+    textAlign: 'justify',
+  },
+  news_name: {
+    fontFamily: "'Oswald', sans-serif",
+    fontWeight: 300,
+    fontSize: '25px',
+    padding: '0px',
+    right: '150px',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  icon_link: {
+    "&:hover": {
+      color: "#a08036 !important"
+    }
+  },
+  code_and_preprint: {
+    fontSize: '13px', 
+    fontWeight: 500, 
+    color: '#a08036', 
+    textDecoration: "none",
+    "&:hover": {
+      color: "black !important",
+      borderBottom: "1px dotted #000",
+      cursor: 'pointer'
+    }
   }
 }));
 
 export default function Home() {
+  const BlueOnGreenTooltip = withStyles({
+    tooltip: {
+      color: "white",
+      backgroundColor: "black"
+    }
+  })(Tooltip);
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState({
+    value: 0,
+  left: false});
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue({ ...value, value: newValue });
+    
   };
+
+  const toggleDrawer = ( open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setValue({ ...value, left: open });
+  };
+
+  const [expanded, setExpanded] = React.useState(true);
+
+  const interestlist = [
+    {"description": [`Learning from language in `, <b>multilingual, low-resource</b> ,` settings`]},
+    {"description": [<b>Debiasing</b>, " Large Language Models (LM's)"]},
+    {"description": ["Making LLM's ",<b>combat misinformation and hate speech</b>]},
+    // {"description": "Applications of Vision and Language in healthcare"}
+  ]
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appbar}>
+      {
+        isTabletOrMobile ? 
+        <AppBar position={"fixed"} className={classes.appbar}>
+          <Toolbar>
+          <IconButton
+            size="medium"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={toggleDrawer( true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          Vitthal Bhandari
+          <Drawer
+            anchor='left'
+            open={value['left']}
+            onClose={toggleDrawer( false)}
+            classes={{paper: classes.drawer}}
+          >
+          <Tabs
+          orientation={isTabletOrMobile ? 'vertical' : 'horizontal'}
+          value={value['value']}
+          onChange={handleChange}
+          aria-label="simple tabs example"
+          classes={{ indicator: classes.indicator }}
+
+          variant={isTabletOrMobile ? "scrollable" : "standard"}
+          scrollButtons={isTabletOrMobile ? "on" : "off"}
+          >
+          <Tab label="About" {...a11yProps(0)} className={classes.tab} />
+          <Tab label="Publications" {...a11yProps(1)} />
+          <Tab label="Projects" {...a11yProps(2)} />
+          <Tab label="My Bucket List" {...a11yProps(3)} />
+          <Tab label="Contact Me" {...a11yProps(4)} />
+          <Tab component={RouterLink} label="Blog" value='/blog' to='/blog' {...a11yProps(5)} />
+          </Tabs>
+          </Drawer>
+          </Toolbar>
+        </AppBar>
+        : 
+        <AppBar position={isTabletOrMobile ? "relative" : "fixed"} className={classes.appbar}>
         <Tabs
+          orientation={isTabletOrMobile ? 'vertical' : 'horizontal'}
+          value={value['value']}
+          onChange={handleChange}
+          aria-label="simple tabs example"
+          classes={{ indicator: classes.indicator }}
+    
+          variant={isTabletOrMobile ? "scrollable" : "standard"}
+          scrollButtons={isTabletOrMobile ? "on" : "off"}
+          centered
+        >
+          <Tab label="About" {...a11yProps(0)} className={classes.tab} />
+          <Tab label="Publications" {...a11yProps(1)} />
+          <Tab label="Projects" {...a11yProps(2)} />
+          <Tab label="My Bucket List" {...a11yProps(3)} />
+          <Tab label="Contact Me" {...a11yProps(4)} />
+          <Tab component={RouterLink} label="Blog"  value='/blog' to='/blog' {...a11yProps(5)} />
+        </Tabs>
+      </AppBar>
+      }
+      {/* <AppBar position={isTabletOrMobile ? "relative" : "fixed"} className={classes.appbar}>
+        <Tabs
+          orientation={isTabletOrMobile ? 'vertical' : 'horizontal'}
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
@@ -198,88 +354,174 @@ export default function Home() {
           <Tab label="About" {...a11yProps(0)} className={classes.tab} />
           <Tab label="Publications" {...a11yProps(1)} />
           <Tab label="Projects" {...a11yProps(2)} />
-          <Tab label="Contact Me" {...a11yProps(3)} />
+          <Tab label="My Bucket List" {...a11yProps(3)} />
+          <Tab label="Contact Me" {...a11yProps(4)} />
         </Tabs>
-      </AppBar>
+      </AppBar> */}
       <Grid container spacing={3} justify="center">
-        <Grid item xs={12} lg={7}>
-          <TabPanel value={value} index={0}>
-            <Grid container spacing={0} style={{ marginTop: '40px' }}>
-              <Grid item xs={12} lg={6}>
-                <Typography className={classes.name}>VITTHAL</Typography>
-                <Typography className={classes.name}>BHANDARI</Typography>
 
-                <Typography className={classes.subname} style={{ marginTop: '15px' }}>Data Science Analyst</Typography>
-                <Typography className={classes.subname}>Standard Chartered Bank</Typography>
-                <Typography className={classes.subname}>BITS Pilani Alumnus</Typography>
-
-                <Grid container justify="left" style={{ marginTop: '10px' }}>
-                  <a target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href={pdf1} rel='noopener noreferrer'>
+        { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) && <Grid item xs={12} md={3} lg={3}>
+          <Grid container spacing={5} direction="column" alignItems="center" justifyContent="center" style={{ marginTop: '40px' }}>
+            
+            <Grid item xs={12} style={{position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '2em' : '40em'}}>
+              <img src={img1} alt="profile_pic" style={{ width: '50%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
+              <br></br>
+              <Typography className={classes.name}>VITTHAL</Typography>
+              <Typography className={classes.name}>BHANDARI</Typography>
+              <br></br>
+              <Typography className={classes.subname} style={{ marginTop: '15px' }}>Data Science Analyst</Typography>
+              <Typography className={classes.subname}>Standard Chartered Bank</Typography>
+              <Typography className={classes.subname}>BITS Pilani Alumnus</Typography>
+              <br></br>
+              <Grid container justify="center" style={{ marginTop: '10px' }}>
+                <BlueOnGreenTooltip  title="Curriculum Vitae" placement="top" arrow>
+                  <a className={classes.icon_link} target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href={pdf1} rel='noopener noreferrer'>
                     <i
                       className="ai ai-cv-square ai-2x"
                     >
                     </i>
                   </a>
-                  <Link target="_blank" href="https://github.com/vitthal-bhandari">
-                    <FontAwesomeIcon
-                      icon={faGithubSquare}
-                      size="2x"
-                      style={{ color: 'black', paddingRight: '10px' }}
-                    />
-                  </Link>
-                  <Link target="_blank" href="https://www.linkedin.com/in/vitthal-bhandari/">
-                    <FontAwesomeIcon
-                      icon={faLinkedin}
-                      size="2x"
-                      style={{ color: '#0a66c2', paddingRight: '10px' }}
-                    />
-                  </Link>
-                  <Link target="_blank" href="https://twitter.com/vit_bhandari">
-                    <FontAwesomeIcon
-                      icon={faTwitterSquare}
-                      size="2x"
-                      style={{ color: '#1d9bf0', paddingRight: '10px' }}
-                    />
-                  </Link>
-                </Grid>
+                </BlueOnGreenTooltip >
+                <BlueOnGreenTooltip  title="GitHub" placement="top" arrow>
+                <Link target="_blank" href="https://github.com/vitthal-bhandari">
+                  <FontAwesomeIcon
+                    icon={faGithubSquare}
+                    size="2x"
+                    style={{ color: 'black', paddingRight: '10px' }}
+                    className={classes.icon_link} 
+                  />
+                </Link>
+                </BlueOnGreenTooltip >
+                <BlueOnGreenTooltip  title="LinkedIn" placement="top" arrow>
+                <Link target="_blank" href="https://www.linkedin.com/in/vitthal-bhandari/">
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    size="2x"
+                    style={{ color: '#0a66c2', paddingRight: '10px' }}
+                    className={classes.icon_link} 
+                  />
+                  
+                </Link>
+                </BlueOnGreenTooltip >
+                <BlueOnGreenTooltip  title="Twitter" placement="top" arrow>
+                <Link target="_blank" href="https://twitter.com/vit_bhandari">
+                  <FontAwesomeIcon
+                    icon={faTwitterSquare}
+                    size="2x"
+                    style={{ color: '#1d9bf0', paddingRight: '10px' }}
+                    className={classes.icon_link} 
+                  />
+                </Link>
+                </BlueOnGreenTooltip >
+                <BlueOnGreenTooltip  title="Google Scholar" placement="top" arrow>
+                <a className={classes.icon_link}  target="_blank" style={{ color: '#2873EB', paddingRight: '10px' }} href="https://scholar.google.com/citations?user=ZfdsC-AAAAAJ&hl=en"  rel='noopener noreferrer'>
+                  <i
+                    className="ai ai-google-scholar-square ai-2x"
+                  >
+                  </i>
+                </a>
+                </BlueOnGreenTooltip >
+                <BlueOnGreenTooltip  title="Semantic Scholar" placement="top" arrow>
+                <a className={classes.icon_link}  target="_blank" style={{  paddingRight: '10px' }} href="https://www.semanticscholar.org/author/Vitthal-Bhandari/2160539147"  rel='noopener noreferrer'>
+                  <i
+                    className="ai ai-semantic-scholar-square ai-2x"
+                  >
+                  </i>
+                </a>
+                </BlueOnGreenTooltip >
               </Grid>
-              <Grid item xs={12} lg={6}>
-                <img src={img1} alt="profile_pic" style={{ width: '100%', objectFit: 'contain', border: '#404040 1px solid' }}></img>
+            </Grid>
+
+          </Grid>
+        </Grid>}
+
+        <Grid item xs={12} md={6} lg={6}>
+          <TabPanel value={value['value']} index={0}>
+            <Grid container spacing={0} style={{ marginTop: isTabletOrMobile?'0': '60px' }}>
+
+            <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  About Me
+                </Typography>
               </Grid>
 
-              <Grid item xs={12} style={{ marginTop: '35px' }}>
+              <Grid item xs={12}>
                 <Typography className={classes.bio}>
                   <p>I am a Data Science Analyst at Standard Chartered Bank GBS, India where I'm part of the DFT Data Science team, working on some innovative, pressing usecases.</p>
 
-                  <p>Prior to joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> - Pilani Campus with a Major in <b>Computer Science</b> and Minor in <b>Data Science</b>. The minor degree significantly shifted my attention to the vast field of data science with specific focus on deep learning.</p>
+                  <p>Prior to joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> - Pilani Campus with a Major in <b>Computer Science</b> and Minor in <b>Data Science</b>.</p>
+                    
+                    {/* Previously, I worked under <Link target="_blank" href="https://www.bits-pilani.ac.in/pilani/sundaresanraman/profile" className={classes.links}>Dr. Sundaresan Raman</Link>, along with a team of doctors and researchers to review the advancements in retinal imaging techniques. Additionally I spent a considerable amount of time exploring self supervised approaches to <Link target="_blank" href="https://en.wikipedia.org/wiki/Speaker_diarisation" className={classes.links}>Speaker Diarization</Link> (The task of identifying <i>"who spoke when?"</i> in audio clips). This has led me to develop a keen interest in <i>audio processing</i> and <i>speech embeddings</i> as an extension to NLP.</p> */}
 
-                  <p>My interests range from <i>natural language processing (NLP), especially word embeddings,</i> to applications of <i>computer vision in healthcare</i> such as early diagnosis of abnormalities in cells and tissues. To this end, I worked under <Link target="_blank" href="https://www.bits-pilani.ac.in/pilani/sundaresanraman/profile" className={classes.links}>Dr. Sundaresan Raman</Link>, along with a team of doctors and researchers to submit a review chapter on retinal imaging techniques for a publication under Sringer Nature. Additionally I have been working on a project exploring self supervised approaches to <Link target="_blank" href="https://en.wikipedia.org/wiki/Speaker_diarisation" className={classes.links}>Speaker Diarization</Link> (The task of identifying <i>"who spoke when?"</i> in audio clips). This has led me to develop a keen interest in <i>audio processing</i> and <i>speech embeddings</i> as an extension to NLP.</p>
+                  <p>I had the wonderful opportunity of spending summers interning at Standard Chartered GBS and RRSC West - Jodhpur, ISRO, exposing myself to technologies such as React, SpringBoot, IDL and Elasticsearch. I also completed a semester long internship at PayPal, Bangalore where I worked on fullstack web development.</p>
 
-                  <p>Previously, I had the wonderful opportunity of spending summers interning at Standard Chartered GBS and RRSC West - Jodhpur, ISRO, exposing myself to technologies such as React, SpringBoot, IDL and Elasticsearch. I recently completed a semester long internship at PayPal, Bangalore where I worked on fullstack web development. These internships provided me with a wholistic view of the opportunities in CS.</p>
+                  <p>I am a Fullstack Web Developer at SCB. We work with modern technologies including <b>React, Material UI, & Typescript</b> (for frontend), <b>Python & Flask</b> (for backend), <b>Solr, Oracle SQL, Elasticsearch, & Dremio</b> (for indexing and storing data), and <b>Git & Jenkins</b> (for version control and CI/CD management)</p>
+
+                  <p>In another world, I hustle and follow my passion for ML engineering. I have interests in <b>NLP, HCI, & Social Computing</b>. To this end I have participated in shared tasks, published system description papers and done extensive research on the application of Large Language Models in moderating <b>hate speech</b> - an issue which plagues most social media platforms, unfortunately.
+                  
+                  For what it's worth, I can fine tune any LM in &lt; 15 minutes. I am also proficient in most pre processing mthods and using popular ML libraries, tools, and frameworks such as <b>PyTorch, Tensorflow, Huggingface, Weights and Biases, Pandas, & Numpy</b>.</p>
+
+                <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <b>For prospective recuiters</b>
+                  </AccordionSummary>
+
+                  <AccordionDetails>
+                    <p className={classes.accordionbio}>
+                    I am looking for roles that challenge me in all/a subset of the following:
+                    <ol>
+                      <li key='0'>
+                        Fullstack development
+                      </li>
+                      <li key='1'>
+                        Machine Learning Engineering
+                      </li>
+                      <li key='2'>
+                        Natural Language Processing development/research
+                      </li>
+                    </ol>
+                  </p>
+                  </AccordionDetails>
+                </Accordion>
+
+
+
+                  {/* <p>I'm interested in language as a computational tool. My current work incorporates: 
+                  <ol>
+                    {interestlist.map(interest =>
+                      <li key={interest.key}>{interest.description}</li>
+                    )}
+                  </ol>
+
+                  </p> */}
                 </Typography>
 
               </Grid>
 
               <Grid item xs={12} style={{ marginTop: '35px' }}>
-                <Grid container justify="center">
-                  <Grid item xs={12} lg={3} style={{ marginBottom: '20px' }}>
-                    <img src={img_paypal} alt="paypal_logo" style={{ height: '50px' }}></img>
+                <Grid container justify="center" style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>
+                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
+                    <img src={img_paypal} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>PayPal, Bengaluru</Typography>
                     <Typography className={classes.years}>Spring 2021</Typography>
                   </Grid>
-                  <Grid item xs={12} lg={3} style={{ marginBottom: '20px' }}>
-                    <img src={img_scb} alt="scb_logo" style={{ height: '50px' }}></img>
+                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
+                    <img src={img_scb} alt="scb_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>SCB GBS, Bengaluru</Typography>
                     <Typography className={classes.years}>Summer 2020</Typography>
                     <Typography className={classes.years}>Fall 2021 - Present</Typography>
                   </Grid>
-                  <Grid item xs={12} lg={3} style={{ marginBottom: '20px' }}>
-                    <img src={img_isro} alt="isro_logo" style={{ height: '50px' }}></img>
+                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
+                    <img src={img_isro} alt="isro_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>RRSC, Jodhpur</Typography>
                     <Typography className={classes.years}>Summer 2019</Typography>
                   </Grid>
-                  <Grid item xs={12} lg={3} style={{ marginBottom: '20px' }}>
-                    <img src={img_bits} alt="bits_logo" style={{ height: '50px' }}></img>
+                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px': '20px' }}>
+                    <img src={img_bits} alt="bits_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>BITS Pilani</Typography>
                     <Typography className={classes.years}>2017 - 2021</Typography>
                   </Grid>
@@ -287,8 +529,21 @@ export default function Home() {
               </Grid>
             </Grid>
           </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Grid container spacing={0} style={{ marginTop: '40px' }}>
+
+          <TabPanel value={value['value']} index={1}>
+            <Grid container spacing={0} style={{ marginTop: '60px' }}>
+              <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  Workshops
+                </Typography>
+              </Grid>
+
+              <Grid item className={classes.pub_item}>
+                <Typography className={classes.pub_heading}>bitsa_nlp@LT-EDI-ACL2022: Leveraging Pretrained Language Models for Detecting Homophobia and Transphobia in Social Media Comments</Typography>
+                <Typography className={classes.pub_names}><u>Vitthal Bhandari</u> and Poonam Goyal</Typography>
+                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>ACL 2022</span> {'\u25Cb'} <em>The Second Workshop on LT-EDI</em> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection">CODE</a> {'\u25Cf'}  <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://arxiv.org/abs/2203.14267">PREPRINT</a> </span></Typography>
+              </Grid>
+
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   Book Chapters
@@ -296,13 +551,38 @@ export default function Home() {
               </Grid>
               <Grid item className={classes.pub_item}>
                 <Typography className={classes.pub_heading}>Image Processing in Retinal Imaging</Typography>
-                <Typography className={classes.pub_names}>Rehana Khan, <u>Vitthal Bhandari</u>, Sundaresan Raman, Abhishek Vyas, Akshay Raman, Maitreyee Roy, Rajiv Raman</Typography>
-                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Springer Nature 2021</span> {'\u25CB'} <em>Teleophthalmology and digital health: A practical guide to applications</em> (Submitted)</Typography>
+                <Typography className={classes.pub_names}>Rehana Khan, <u>Vitthal Bhandari</u>, Sundaresan Raman, Abhishek Vyas, Akshay Raman, Maitreyee Roy and Rajiv Raman</Typography>
+                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Springer Nature 2021</span> {'\u25CB'} <em>Teleophthalmology and digital health: A practical guide to applications</em> (Accepted)</Typography>
               </Grid>
             </Grid>
           </TabPanel>
-          <TabPanel value={value} index={2}>
-            <Grid container spacing={0} style={{ marginTop: '40px' }}>
+          
+          <TabPanel value={value['value']} index={2}>
+            <Grid container spacing={0} style={{ marginTop: '60px' }}>
+
+              <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  Shared Tasks
+                </Typography>
+              </Grid>
+
+              <Grid item className={classes.pub_item}>
+                <Typography className={classes.project_heading}>
+                  Homophobia/Transphobia Detection in social media comments
+                  <span style={{float: 'right'}}>
+                  <Link target="_blank" href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" style={{paddingRight: '8px'}}>
+                      <FontAwesomeIcon
+                        icon={faGithub}
+                        size="lg"
+                        style={{ color: 'black'}}
+                      />
+                  </Link>             
+                  </span>   
+                </Typography>
+                <ul>
+                  <li className={classes.project}>Experimented with a variety of mono-lingual and multi-lingual transformer models along with data augmentation techniques for detection of homophobic/transphobic content among topical youtube comments in 3 settings: English, Tamil and code-mixed Tanglish language</li>
+                </ul>
+              </Grid>
 
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
@@ -498,9 +778,120 @@ export default function Home() {
 
             </Grid>
           </TabPanel>
-          <TabPanel value={value} index={3}>
-            <Grid container spacing={0} style={{ marginTop: '40px' }}>
+
+          <TabPanel value={value['value']} index={3}>
+            <Grid container spacing={0} style={{ marginTop: '60px' }}>
+            <Grid item xs={12} lg={6}>
+              <Typography className={classes.pubs}>
+                My Reading List
+              </Typography>
+              </Grid>
               <Grid item xs={12}>
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar alt="book1" src={book1}  style={{minWidth: '100px', height: '120px', objectFit: 'contain'}} variant='rounded'/>
+                    </ListItemAvatar>
+                    <ListItemText
+                      style={{ paddingLeft: '10px'}}
+                      primary={<><strike>Advanced NLP with TensorFlow 2 </strike>&nbsp; &nbsp; <DoneOutlineIcon style={{ verticalAlign: 'middle', color: 'green' }}/></> }
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            Packt Publications
+                            <br></br>
+                          </Typography>
+                          {<Typography className={classes.book}>I'd really love to read this book. It contains recipes for a lot of advanced NLP tasks such as NLG, text summarization and POS tagging. I'll probably end up learning a lot about RNNs and more complex architectures.</Typography>}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar alt="book2" src={book2}  style={{minWidth: '100px', height: '120px', objectFit: 'contain'}} variant='square'/>
+                    </ListItemAvatar>
+                    <ListItemText
+                    style={{ paddingLeft: '10px'}}
+                      primary="Transformers for NLP"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            Packt Publications
+                          </Typography>
+                          {<Typography className={classes.book}>I think this is a must read. I mean why not? Transformers are everywhere - BERT, GPT3, RoBERTa. I'll probably have to catch up fast before another big breakthrough in NLP.</Typography>}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar alt="book3" src={book3}  style={{minWidth: '100px', height: '150px', objectFit: 'contain'}} variant='square'/>
+                    </ListItemAvatar>
+                    <ListItemText
+                    style={{ paddingLeft: '10px'}}
+                      primary="An Introduction to Statistical Learning - Second Edition"
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            sx={{ display: 'inline' }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            https://www.statlearning.com/
+                          </Typography>
+                          {<Typography className={classes.book}>I love classics, but ISLR is more than that. It's the beginning and much more. I remember reading a part of it during my undergrad, but reading it completely right now is a necessity - polishing my ML theory won't hurt!</Typography>}
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                </List>
+              </Grid>
+
+              <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  My Task list
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+
+                <List
+                  sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                  component="nav"
+                  aria-labelledby="nested-list-subheader"
+                  subheader={
+                    <ListSubheader component="div" id="nested-list-subheader">
+                      A few of the shared tasks I'm planning on participating in - of course if my time permits!
+                    </ListSubheader>
+                  }
+                >
+                  <ListItem>
+                    <ListItemText primary="WASSA @ ACL 2022" 
+                    secondary = {"is offering a Shared-Task on Empathy Detection and Emotion Classification"} />
+                  </ListItem>
+
+                </List>
+              </Grid>
+            </Grid>
+          </TabPanel>
+
+          <TabPanel value={value['value']} index={4}>
+            <Grid container spacing={0} style={{ marginTop: '60px' }}>
+              <Grid item xs={12}>
+                <img src={avatar} alt="avatar" style={{ height: '150px' }}></img>
                 <Typography className={classes.contact}>
                   You can reach out to me on my <Link href="mailto:vitthalbhandari98@gmail.com" className={classes.links}>personal email</Link> for any questions or potential opportunities for collaboration.
                   <br></br>
@@ -556,7 +947,30 @@ export default function Home() {
               </Grid>
             </Grid>
           </TabPanel>
+
         </Grid>
+
+        { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) &&<Grid item xs={12} md={3} lg={3} >
+
+        <Typography className={classes.news_name} style={{ position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '0':'4em'}}>News</Typography>
+          <nav aria-label="secondary mailbox folders" style={{position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '0':'8em', paddingLeft: '0px', paddingRight: '32px'}}>
+            <List>
+            <ListItem disablePadding>
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Attended the <Link target="_blank" href="https://trust-ai-workshop.github.io/" className={classes.links}>Workshop on Trustworthy AI</Link> and on Jan 5 and Jan 6 hosted by Microsoft Research, Bengaluru. </Typography> } />
+              </ListItem>
+              <ListItem disablePadding>
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> March 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> System description paper <b>accepted</b> at ACL 2022. Here is the <Link target="_blank" href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" className={classes.links}>Code</Link> and <Link target="_blank" href="https://arxiv.org/pdf/2203.14267.pdf" className={classes.links}>Preprint</Link>. </Typography> } />
+              </ListItem>
+              <ListItem disablePadding>
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> February 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Achieved <Link target="_blank" href="https://competitions.codalab.org/competitions/36394#learn_the_details-results" className={classes.links}>ranks</Link> 9, 6, and 3 in English, Tamil, and Tanglish tracks respectively in the Shared Task below. Will share the system description paper soon. </Typography> } />
+              </ListItem>
+              <ListItem disablePadding>
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Recently participated in the Shared Task on <Link target="_blank" href="https://competitions.codalab.org/competitions/36394" className={classes.links}>Homophobia/Transphobia Detection in social media comments</Link> at the 2nd<Link target="_blank" href="https://sites.google.com/view/lt-edi-2022/home" className={classes.links}> LT-EDI workshop</Link> to be held at <b>ACL 2022</b> </Typography> } />
+              </ListItem>
+            </List>
+          </nav>
+        </Grid>}
+
       </Grid>
 
     </div>
