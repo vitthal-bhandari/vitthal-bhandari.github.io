@@ -14,7 +14,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
   Link as RouterLink
 } from 'react-router-dom';
-
 import img1 from '../assets/images/blue kurta.png';
 import img_paypal from '../assets/images/paypal.png';
 import img_scb from '../assets/images/scb.png';
