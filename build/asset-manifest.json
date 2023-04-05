@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.5739ad41.chunk.css",
-    "main.js": "/static/js/main.f6e1be02.chunk.js",
-    "main.js.map": "/static/js/main.f6e1be02.chunk.js.map",
+    "main.js": "/static/js/main.e8c4320f.chunk.js",
+    "main.js.map": "/static/js/main.e8c4320f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.dbb7ea22.js",
     "runtime-main.js.map": "/static/js/runtime-main.dbb7ea22.js.map",
     "static/js/2.3f656cbc.chunk.js": "/static/js/2.3f656cbc.chunk.js",
@@ -16,7 +16,6 @@
     "static/media/amex-logo.81669e6b.png": "/static/media/amex-logo.81669e6b.png",
     "static/media/avatar.19b2972b.png": "/static/media/avatar.19b2972b.png",
     "static/media/bitspilani.0ad2caa4.png": "/static/media/bitspilani.0ad2caa4.png",
-    "static/media/blue kurta.9da0f256.png": "/static/media/blue kurta.9da0f256.png",
     "static/media/book1.a7690907.png": "/static/media/book1.a7690907.png",
     "static/media/book2.aa4d5f7b.png": "/static/media/book2.aa4d5f7b.png",
     "static/media/book3.3ecf3a46.png": "/static/media/book3.3ecf3a46.png",
@@ -31,12 +30,13 @@
     "static/media/isro2.2fd2bbe0.png": "/static/media/isro2.2fd2bbe0.png",
     "static/media/paypal.3acce147.png": "/static/media/paypal.3acce147.png",
     "static/media/scb.d8a22f11.png": "/static/media/scb.d8a22f11.png",
-    "static/media/social.jpg": "/static/media/social.a8f5c3af.jpg"
+    "static/media/social.jpg": "/static/media/social.a8f5c3af.jpg",
+    "static/media/vitthal-circular.c9d5f980.png": "/static/media/vitthal-circular.c9d5f980.png"
   },
   "entrypoints": [
     "static/js/runtime-main.dbb7ea22.js",
     "static/js/2.3f656cbc.chunk.js",
     "static/css/main.5739ad41.chunk.css",
-    "static/js/main.f6e1be02.chunk.js"
+    "static/js/main.e8c4320f.chunk.js"
   ]
 }
