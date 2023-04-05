@@ -15,7 +15,7 @@ import {
   Link as RouterLink
 } from 'react-router-dom';
 
-import img1 from '../assets/images/blue kurta.png';
+import img1 from '../assets/images/vitthal-circular.png';
 import img_paypal from '../assets/images/paypal.png';
 import img_scb from '../assets/images/scb.png';
 import img_isro from '../assets/images/isro2.png';
@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: '1rem',
     lineHeight: '1.8',
-    textAlign: 'justify',
+    textAlign: 'left',
   },
   accordionbio: {
     fontFamily: "'Work Sans', sans-serif",
@@ -360,13 +360,13 @@ export default function Home() {
           <Tab label="Contact Me" {...a11yProps(4)} />
         </Tabs>
       </AppBar> */}
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={3} justify="center"  style={{ marginTop: '5px' }}>
 
         { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) && <Grid item xs={12} md={3} lg={3}>
           <Grid container spacing={5} direction="column" alignItems="center" justifyContent="center" style={{ marginTop: '40px' }}>
             
-            <Grid item xs={12} style={{position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '2em' : '40em'}}>
-              <img src={img1} alt="profile_pic" style={{ width: '50%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
+            <Grid item xs={12} style={{ marginTop: 'inherit'}}>
+              <img src={img1} alt="profile_pic" style={{ maxWidth: '57%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
               <br></br>
               <Typography className={classes.name}>Vitthal</Typography>
               <Typography className={classes.name}>Bhandari</Typography>
@@ -441,17 +441,17 @@ export default function Home() {
           <TabPanel value={value['value']} index={0}>
             <Grid container spacing={0} style={{ marginTop: isTabletOrMobile?'0': '60px' }}>
 
-            <Grid item xs={12} lg={6}>
+            {/* <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   About Me
                 </Typography>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12}>
                 <Typography className={classes.bio}>
                   <p>I am am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>. Prior to Amex I worked at Standard Chartered Bank GBS, India where I helped develop their in-house chatbot called <i>Maya</i>.</p>
 
-                  <p>Before joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in <b>Computer Science</b> and minor in <b>Data Science</b>.</p>
+                  <p>Before joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science.</p>
 
                   <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p>
 
@@ -954,25 +954,26 @@ export default function Home() {
 
         </Grid>
 
-        { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) &&<Grid item xs={12} md={3} lg={3} >
+        { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) &&<Grid item xs={12} md={3} lg={3} style={{marginTop: '100px'}}>
 
-        <Typography className={classes.news_name} style={{ position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '0':'4em'}}>News</Typography>
-          <nav aria-label="secondary mailbox folders" style={{position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '0':'8em', paddingLeft: '0px', paddingRight: '32px'}}>
+        <Grid item xs={12}><Typography className={classes.news_name}>News</Typography></Grid>
+        <Grid item xs={12}><nav aria-label="secondary mailbox folders" style={{paddingLeft: '0px', paddingRight: '32px'}}>
             <List>
             <ListItem disablePadding>
                   <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Attended the <Link target="_blank" href="https://trust-ai-workshop.github.io/" className={classes.links}>Workshop on Trustworthy AI</Link> and on Jan 5 and Jan 6 hosted by Microsoft Research, Bengaluru. </Typography> } />
               </ListItem>
               <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> March 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> System description paper <b>accepted</b> at ACL 2022. Here is the <Link target="_blank" href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" className={classes.links}>Code</Link> and <Link target="_blank" href="https://arxiv.org/pdf/2203.14267.pdf" className={classes.links}>Preprint</Link>. </Typography> } />
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> March 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> System description paper accepted at ACL 2022. Here is the <Link target="_blank" href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" className={classes.links}>Code</Link> and <Link target="_blank" href="https://arxiv.org/pdf/2203.14267.pdf" className={classes.links}>Preprint</Link>. </Typography> } />
               </ListItem>
               <ListItem disablePadding>
                   <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> February 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Achieved <Link target="_blank" href="https://competitions.codalab.org/competitions/36394#learn_the_details-results" className={classes.links}>ranks</Link> 9, 6, and 3 in English, Tamil, and Tanglish tracks respectively in the Shared Task below. Will share the system description paper soon. </Typography> } />
               </ListItem>
               <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Recently participated in the Shared Task on <Link target="_blank" href="https://competitions.codalab.org/competitions/36394" className={classes.links}>Homophobia/Transphobia Detection in social media comments</Link> at the 2nd<Link target="_blank" href="https://sites.google.com/view/lt-edi-2022/home" className={classes.links}> LT-EDI workshop</Link> to be held at <b>ACL 2022</b> </Typography> } />
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Recently participated in the Shared Task on <Link target="_blank" href="https://competitions.codalab.org/competitions/36394" className={classes.links}>Homophobia/Transphobia Detection in social media comments</Link> at the 2nd<Link target="_blank" href="https://sites.google.com/view/lt-edi-2022/home" className={classes.links}> LT-EDI workshop</Link> to be held at ACL 2022 </Typography> } />
               </ListItem>
             </List>
           </nav>
+          </Grid>
         </Grid>}
 
       </Grid>
