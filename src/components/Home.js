@@ -21,6 +21,7 @@ import img_scb from '../assets/images/scb.png';
 import img_isro from '../assets/images/isro2.png';
 import img_bits from '../assets/images/bitspilani.png';
 import avatar from '../assets/images/avatar.png';
+import img_amex from '../assets/images/amex-logo.png';
 import pdf1 from '../assets/CV/Bhandari_Vitthal_CV.pdf';
 import book1 from '../assets/images/book1.png';
 import book2 from '../assets/images/book2.png';
@@ -85,18 +86,18 @@ const useStyles = makeStyles((theme) => ({
     height: '3px',
   },
   name: {
-    fontFamily: "'Oswald', sans-serif",
-    fontWeight: 700,
-    fontSize: '50px',
+    fontFamily: "'Work Sans', sans-serif",
+    fontWeight: 600,
+    fontSize: '48px',
     padding: '0px',
     textAlign: 'left',
-    lineHeight: '40pt',
+    lineHeight: '1.2',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center'
   },
   subname: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     textAlign: 'left',
     lineHeight: '20pt',
@@ -106,14 +107,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
   bio: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 400,
-    fontSize: '12pt',
+    fontSize: '1rem',
+    lineHeight: '1.8',
     textAlign: 'justify',
   },
   accordionbio: {
-    fontFamily: "'Roboto', sans-serif",
-    fontWeight: 400,
+    fontFamily: "'Work Sans', sans-serif",
+    fontWeight: 500,
     fontSize: '11pt',
     textAlign: 'justify',
   },
@@ -121,8 +123,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#1d9bf0',
   },
   pubs: {
-    fontFamily: "'Oswald', sans-serif",
-    fontWeight: 700,
+    fontFamily: "'Work Sans', sans-serif",
+    fontWeight: 600,
     fontSize: '40px',
     padding: '0px',
     textAlign: 'left',
@@ -135,25 +137,25 @@ const useStyles = makeStyles((theme) => ({
     padding: '7px'
   },
   pub_heading: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 500,
     fontSize: '13pt',
     textAlign: 'left',
   },
   pub_names: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'left',
   },
   pub_venue: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'left',
   },
   contact: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'center',
@@ -168,26 +170,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   institution: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '12px',
     textAlign: 'center',
   },
   years: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '11px',
     color: '#888',
     textAlign: 'center',
   },
   project: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '12pt',
     textAlign: 'justify',
   },
   project_heading: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 500,
     fontSize: '15pt',
     textAlign: 'left',
@@ -197,20 +199,20 @@ const useStyles = makeStyles((theme) => ({
     color: "white"
   },
   book: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 400,
     fontSize: '0.875rem',
     textAlign: 'left',
   },
   news: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Work Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'justify',
   },
   news_name: {
-    fontFamily: "'Oswald', sans-serif",
-    fontWeight: 300,
+    fontFamily: "'Work Sans', sans-serif",
+    fontWeight: 600,
     fontSize: '25px',
     padding: '0px',
     right: '150px',
@@ -366,12 +368,12 @@ export default function Home() {
             <Grid item xs={12} style={{position : isTabletOrMobile ? 'relative' : 'fixed', marginTop: isTabletOrMobile ? '2em' : '40em'}}>
               <img src={img1} alt="profile_pic" style={{ width: '50%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
               <br></br>
-              <Typography className={classes.name}>VITTHAL</Typography>
-              <Typography className={classes.name}>BHANDARI...</Typography>
+              <Typography className={classes.name}>Vitthal</Typography>
+              <Typography className={classes.name}>Bhandari</Typography>
               <br></br>
-              <Typography className={classes.subname} style={{ marginTop: '15px' }}>Data Science Analyst</Typography>
-              <Typography className={classes.subname}>Standard Chartered Bank</Typography>
-              <Typography className={classes.subname}>BITS Pilani Alumnus</Typography>
+              <Typography className={classes.subname} style={{ marginTop: '15px' }}>Engineer II</Typography>
+              <Typography className={classes.subname}>American Express</Typography>
+              <Typography className={classes.subname}>BITS Pilani batch of '21</Typography>
               <br></br>
               <Grid container justify="center" style={{ marginTop: '10px' }}>
                 <BlueOnGreenTooltip  title="Curriculum Vitae" placement="top" arrow>
@@ -447,21 +449,15 @@ export default function Home() {
 
               <Grid item xs={12}>
                 <Typography className={classes.bio}>
-                  <p>I am a Data Science Analyst at Standard Chartered Bank GBS, India where I'm part of the DFT Data Science team, working on some innovative, pressing usecases.</p>
+                  <p>I am am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>. Prior to Amex I worked at Standard Chartered Bank GBS, India where I helped develop their in-house chatbot called <i>Maya</i>.</p>
 
-                  <p>Prior to joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> - Pilani Campus with a Major in <b>Computer Science</b> and Minor in <b>Data Science</b>.</p>
-                    
-                    {/* Previously, I worked under <Link target="_blank" href="https://www.bits-pilani.ac.in/pilani/sundaresanraman/profile" className={classes.links}>Dr. Sundaresan Raman</Link>, along with a team of doctors and researchers to review the advancements in retinal imaging techniques. Additionally I spent a considerable amount of time exploring self supervised approaches to <Link target="_blank" href="https://en.wikipedia.org/wiki/Speaker_diarisation" className={classes.links}>Speaker Diarization</Link> (The task of identifying <i>"who spoke when?"</i> in audio clips). This has led me to develop a keen interest in <i>audio processing</i> and <i>speech embeddings</i> as an extension to NLP.</p> */}
+                  <p>Before joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in <b>Computer Science</b> and minor in <b>Data Science</b>.</p>
 
-                  <p>I had the wonderful opportunity of spending summers interning at Standard Chartered GBS and RRSC West - Jodhpur, ISRO, exposing myself to technologies such as React, SpringBoot, IDL and Elasticsearch. I also completed a semester long internship at PayPal, Bangalore where I worked on fullstack web development.</p>
+                  <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p>
 
-                  <p>I am a Fullstack Web Developer at SCB. We work with modern technologies including <b>React, Material UI, & Typescript</b> (for frontend), <b>Python & Flask</b> (for backend), <b>Solr, Oracle SQL, Elasticsearch, & Dremio</b> (for indexing and storing data), and <b>Git & Jenkins</b> (for version control and CI/CD management)</p>
+                  <p>In another world, I hustle and follow my passion for ML engineering. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive research on the application of LLMs in moderating hate speech on social media platforms.</p>
 
-                  <p>In another world, I hustle and follow my passion for ML engineering. I have interests in <b>NLP, HCI, & Social Computing</b>. To this end I have participated in shared tasks, published system description papers and done extensive research on the application of Large Language Models in moderating <b>hate speech</b> - an issue which plagues most social media platforms, unfortunately.
-                  
-                  For what it's worth, I can fine tune any LM in &lt; 15 minutes. I am also proficient in most pre processing mthods and using popular ML libraries, tools, and frameworks such as <b>PyTorch, Tensorflow, Huggingface, Weights and Biases, Pandas, & Numpy</b>.</p>
-
-                <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
+                {/* <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -486,7 +482,7 @@ export default function Home() {
                     </ol>
                   </p>
                   </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
 
 
 
@@ -505,16 +501,24 @@ export default function Home() {
               <Grid item xs={12} style={{ marginTop: '35px' }}>
                 <Grid container justify="center" style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>
                   <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
-                    <img src={img_paypal} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>PayPal, Bengaluru</Typography>
-                    <Typography className={classes.years}>Spring 2021</Typography>
+                    <img src={img_amex} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
+                    <Typography className={classes.institution}>Amex, Gurgaon</Typography>
+                    <Typography className={classes.years}>Mar 2023-Present</Typography>
                   </Grid>
+
                   <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
                     <img src={img_scb} alt="scb_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>SCB GBS, Bengaluru</Typography>
                     <Typography className={classes.years}>Summer 2020</Typography>
-                    <Typography className={classes.years}>Fall 2021 - Present</Typography>
+                    <Typography className={classes.years}>Fall 2021 - Feb 2023</Typography>
                   </Grid>
+
+                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
+                    <img src={img_paypal} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
+                    <Typography className={classes.institution}>PayPal, Bengaluru</Typography>
+                    <Typography className={classes.years}>Spring 2021</Typography>
+                  </Grid>
+
                   <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
                     <img src={img_isro} alt="isro_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
                     <Typography className={classes.institution}>RRSC, Jodhpur</Typography>
