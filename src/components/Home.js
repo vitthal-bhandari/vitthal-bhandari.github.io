@@ -11,6 +11,7 @@ import { useMediaQuery } from 'react-responsive';
 import EmailIcon from '@material-ui/icons/Email';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MovieClip from './Video';
 import {
   Link as RouterLink
 } from 'react-router-dom';
@@ -448,15 +449,16 @@ export default function Home() {
               </Grid> */}
 
               <Grid item xs={12}>
+                
                 <Typography className={classes.bio}>
-                  <p>I am am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>. Prior to Amex I worked at Standard Chartered Bank GBS, India where I helped develop their in-house chatbot called <i>Maya</i>.</p>
+                  <p>I am am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>.</p>
 
-                  <p>Before joining SCB I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science.</p>
+                  <p>I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021 .</p>
 
-                  <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p>
+                  {/* <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p> */}
 
-                  <p>In another world, I hustle and follow my passion for ML engineering. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive research on the application of LLMs in moderating hate speech on social media platforms.</p>
-
+                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the application of LLMs in moderating hate speech on social media platforms. You can learn more about my researh in the video below.</p>
+                  <div style={{display: 'flex', justifyContent: 'center'}}><MovieClip /></div>
                 {/* <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -536,16 +538,29 @@ export default function Home() {
 
           <TabPanel value={value['value']} index={1}>
             <Grid container spacing={0} style={{ marginTop: '60px' }}>
+              
+              <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  Preprints
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} className={classes.pub_item}>
+                <Typography className={classes.pub_heading}>On the Challenges of Building Datasets for Hate Speech Detection</Typography>
+                <Typography className={classes.pub_names}><u>Vitthal Bhandari</u></Typography>
+                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Arxiv</span> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://arxiv.org/abs/2309.02912/">MANUSCRIPT</a> </span></Typography>
+              </Grid>
+
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   Workshops
                 </Typography>
               </Grid>
 
-              <Grid item className={classes.pub_item}>
+              <Grid item xs={12} className={classes.pub_item}>
                 <Typography className={classes.pub_heading}>bitsa_nlp@LT-EDI-ACL2022: Leveraging Pretrained Language Models for Detecting Homophobia and Transphobia in Social Media Comments</Typography>
                 <Typography className={classes.pub_names}><u>Vitthal Bhandari</u> and Poonam Goyal</Typography>
-                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>ACL 2022</span> {'\u25Cb'} <em>The Second Workshop on LT-EDI</em> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection">CODE</a> {'\u25Cf'}  <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://arxiv.org/abs/2203.14267">PREPRINT</a> </span></Typography>
+                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>ACL 2022</span> {'\u25Cb'} <em>The Second Workshop on LT-EDI</em> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection">CODE</a> {'\u25Cf'}  <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://aclanthology.org/2022.ltedi-1.18/">MANUSCRIPT</a> </span></Typography>
               </Grid>
 
               <Grid item xs={12} lg={6}>
@@ -553,10 +568,10 @@ export default function Home() {
                   Book Chapters
                 </Typography>
               </Grid>
-              <Grid item className={classes.pub_item}>
+              <Grid item xs={12} className={classes.pub_item}>
                 <Typography className={classes.pub_heading}>Image Processing in Retinal Imaging</Typography>
                 <Typography className={classes.pub_names}>Rehana Khan, <u>Vitthal Bhandari</u>, Sundaresan Raman, Abhishek Vyas, Akshay Raman, Maitreyee Roy and Rajiv Raman</Typography>
-                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Springer Nature 2021</span> {'\u25CB'} <em>Teleophthalmology and digital health: A practical guide to applications</em> (Accepted)</Typography>
+                <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Springer Nature 2023</span> {'\u25CB'} <em>Digital Eye Care and Teleophthalmology: A Practical Guide to Applications</em> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://link.springer.com/chapter/10.1007/978-3-031-24052-2_9">MANUSCRIPT</a> </span></Typography>
               </Grid>
             </Grid>
           </TabPanel>
@@ -959,6 +974,12 @@ export default function Home() {
         <Grid item xs={12}><Typography className={classes.news_name}>News</Typography></Grid>
         <Grid item xs={12}><nav aria-label="secondary mailbox folders" style={{paddingLeft: '0px', paddingRight: '32px'}}>
             <List>
+            <ListItem disablePadding>
+                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> November 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> 1 of only 50 people selected to attend the fourth <Link target="_blank" href="https://lig-alps.imag.fr/" className={classes.links}>Advanced Language Processing School</Link> (ALPS 2024) from Monday 1st to Friday 5th April 2024 in Grenoble, France. </Typography> } />
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> July 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Our manuscript was finally published in Springer after 2 years. </Typography> } />
+            </ListItem>
             <ListItem disablePadding>
                   <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Attended the <Link target="_blank" href="https://trust-ai-workshop.github.io/" className={classes.links}>Workshop on Trustworthy AI</Link> and on Jan 5 and Jan 6 hosted by Microsoft Research, Bengaluru. </Typography> } />
               </ListItem>
