@@ -458,7 +458,7 @@ export default function Home() {
                   {/* <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p> */}
 
                   <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the application of LLMs in moderating hate speech on social media platforms. You can learn more about my researh in the video below.</p>
-                  <div style={{display: 'flex', justifyContent: 'center'}}><MovieClip /></div>
+                  <div style={{display: 'flex', justifyContent: 'center'}}><MovieClip isTabletOrMobile={isTabletOrMobile}/></div>
                 {/* <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
