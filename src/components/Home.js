@@ -377,8 +377,8 @@ export default function Home() {
               <Typography className={classes.subname}>BITS Pilani batch of '21</Typography>
               <br></br>
               <Grid container justify="center" style={{ marginTop: '10px' }}>
-                <BlueOnGreenTooltip  title="Curriculum Vitae" placement="top" arrow>
-                  <a className={classes.icon_link} target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href={pdf1} rel='noopener noreferrer'>
+                <BlueOnGreenTooltip  title="CV avaiable via email request" placement="top" arrow>
+                  <a className={classes.icon_link} target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href="mailto:vitthalbhandari98@gmail.com" rel='noopener noreferrer'>
                     <i
                       className="ai ai-cv-square ai-2x"
                     >
@@ -457,7 +457,7 @@ export default function Home() {
 
                   {/* <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p> */}
 
-                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the application of LLMs in moderating hate speech on social media platforms. You can learn more about my researh in the video below.</p>
+                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the use of LLMs in moderating hate speech on social media platforms. You can learn more about my research in the video below.</p>
                   <div style={{display: 'flex', justifyContent: 'center'}}><MovieClip isTabletOrMobile={isTabletOrMobile}/></div>
                 {/* <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
                   <AccordionSummary
@@ -924,43 +924,36 @@ export default function Home() {
                 <Divider />
                 <br></br>
                 <Typography className={classes.contact}>
-                  If you feel my profile is suitable for research assistant/junior research fellow/machine learning engineer positions in any of the below mentioned domains, I'd be more than happy to discuss possible collaborations!
+                  If you feel I'd be a good fit for your team in any of the below mentioned domains, I'd be more than happy to discuss possible collaborations!
                 </Typography>
                 <div className={classes.chips}>
                   <Chip
                     variant="outlined"
                     size="medium"
-                    label="Multilingual NLP"
+                    label="Low-resource/Zero-shot NLP"
                     clickable
                     color="primary"
                   />
                   <Chip
                     variant="outlined"
                     size="medium"
-                    label="Multimodal AI"
+                    label="Red teaming LLMs"
                     clickable
                     style={{ borderColor: "#1d9bf0", color: "#1d9bf0" }}
                   />
                   <Chip
                     variant="outlined"
                     size="medium"
-                    label="Spoken Language Processing"
+                    label="Content Moderation"
                     clickable
                     color="secondary"
                   />
                   <Chip
                     variant="outlined"
                     size="medium"
-                    label="Computational Biology"
+                    label="Social Computing"
                     clickable
                     style={{ borderColor: "#ff9770", color: "#ff9770" }}
-                  />
-                  <Chip
-                    variant="outlined"
-                    size="medium"
-                    label="Bioinformatics"
-                    clickable
-                    style={{ borderColor: "#cce00e", color: "#cce00e" }}
                   />
                 </div>
               </Grid>
