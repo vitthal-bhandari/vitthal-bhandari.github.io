@@ -451,9 +451,9 @@ export default function Home() {
               <Grid item xs={12}>
                 
                 <Typography className={classes.bio}>
-                  <p>I am am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>.</p>
+                  <p>I am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>.</p>
 
-                  <p>I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021 .</p>
+                  <p>I gradated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021.</p>
 
                   {/* <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p> */}
 
@@ -504,7 +504,7 @@ export default function Home() {
                 <Grid container justify="center" style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>
                   <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
                     <img src={img_amex} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>Amex, Gurgaon</Typography>
+                    <Typography className={classes.institution}>AmEx, Gurgaon</Typography>
                     <Typography className={classes.years}>Mar 2023-Present</Typography>
                   </Grid>
 
