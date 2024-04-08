@@ -1,24 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.5739ad41.chunk.css",
-    "main.js": "/static/js/main.05628706.chunk.js",
-    "main.js.map": "/static/js/main.05628706.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.5fe2f023.js",
-    "runtime-main.js.map": "/static/js/runtime-main.5fe2f023.js.map",
-    "static/js/2.25329ee0.chunk.js": "/static/js/2.25329ee0.chunk.js",
-    "static/js/2.25329ee0.chunk.js.map": "/static/js/2.25329ee0.chunk.js.map",
-    "static/js/3.2300627f.chunk.js": "/static/js/3.2300627f.chunk.js",
-    "static/js/3.2300627f.chunk.js.map": "/static/js/3.2300627f.chunk.js.map",
+    "main.js": "/static/js/main.8007e16c.chunk.js",
+    "main.js.map": "/static/js/main.8007e16c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e82d928b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e82d928b.js.map",
+    "static/js/2.34af22cf.chunk.js": "/static/js/2.34af22cf.chunk.js",
+    "static/js/2.34af22cf.chunk.js.map": "/static/js/2.34af22cf.chunk.js.map",
+    "static/js/3.19e463b3.chunk.js": "/static/js/3.19e463b3.chunk.js",
+    "static/js/3.19e463b3.chunk.js.map": "/static/js/3.19e463b3.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.5739ad41.chunk.css.map": "/static/css/main.5739ad41.chunk.css.map",
-    "static/js/2.25329ee0.chunk.js.LICENSE.txt": "/static/js/2.25329ee0.chunk.js.LICENSE.txt",
-    "static/media/Bhandari_Vitthal_CV.a90a96aa.pdf": "/static/media/Bhandari_Vitthal_CV.a90a96aa.pdf",
-    "static/media/amex-logo.81669e6b.png": "/static/media/amex-logo.81669e6b.png",
+    "static/js/2.34af22cf.chunk.js.LICENSE.txt": "/static/js/2.34af22cf.chunk.js.LICENSE.txt",
     "static/media/avatar.19b2972b.png": "/static/media/avatar.19b2972b.png",
-    "static/media/bitspilani.0ad2caa4.png": "/static/media/bitspilani.0ad2caa4.png",
-    "static/media/book1.a7690907.png": "/static/media/book1.a7690907.png",
-    "static/media/book2.aa4d5f7b.png": "/static/media/book2.aa4d5f7b.png",
-    "static/media/book3.3ecf3a46.png": "/static/media/book3.3ecf3a46.png",
     "static/media/img1.jpg": "/static/media/img1.0bae122b.jpg",
     "static/media/img10.jpg": "/static/media/img10.6207d2e3.jpg",
     "static/media/img11.jpg": "/static/media/img11.157d23c3.jpg",
@@ -27,16 +21,13 @@
     "static/media/img4.jpg": "/static/media/img4.d0a7cd06.jpg",
     "static/media/img5.jpg": "/static/media/img5.ffa89d11.jpg",
     "static/media/img6.jpg": "/static/media/img6.7e6d092e.jpg",
-    "static/media/isro2.2fd2bbe0.png": "/static/media/isro2.2fd2bbe0.png",
-    "static/media/paypal.3acce147.png": "/static/media/paypal.3acce147.png",
-    "static/media/scb.d8a22f11.png": "/static/media/scb.d8a22f11.png",
     "static/media/social.jpg": "/static/media/social.a8f5c3af.jpg",
-    "static/media/vitthal-circular.c9d5f980.png": "/static/media/vitthal-circular.c9d5f980.png"
+    "static/media/vitthal_office_standing_pic.9b9b1189.jpg": "/static/media/vitthal_office_standing_pic.9b9b1189.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5fe2f023.js",
-    "static/js/2.25329ee0.chunk.js",
+    "static/js/runtime-main.e82d928b.js",
+    "static/js/2.34af22cf.chunk.js",
     "static/css/main.5739ad41.chunk.css",
-    "static/js/main.05628706.chunk.js"
+    "static/js/main.8007e16c.chunk.js"
   ]
 }
