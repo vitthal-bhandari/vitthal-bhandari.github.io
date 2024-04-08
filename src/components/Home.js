@@ -1,32 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles , withStyles } from '@material-ui/core/styles';
-import { AppBar, Tab, Tabs, Grid, Typography, Box, Link, Divider, Chip, Badge, List, ListItem, ListItemText, ListItemAvatar , Avatar,
-  ListSubheader, Tooltip, Toolbar, IconButton, Drawer, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-  import MenuIcon from "@material-ui/icons/Menu";
+import { AppBar, Tab, Tabs, Grid, Typography, Box, Link, Badge, 
+  Tooltip, Toolbar, IconButton, Drawer } from '@material-ui/core';
+import MenuIcon from "@material-ui/icons/Menu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubSquare, faLinkedin, faTwitterSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { useMediaQuery } from 'react-responsive';
-import EmailIcon from '@material-ui/icons/Email';
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MovieClip from './Video';
-import {
-  Link as RouterLink
-} from 'react-router-dom';
-
-import img1 from '../assets/images/vitthal-circular.png';
-import img_paypal from '../assets/images/paypal.png';
-import img_scb from '../assets/images/scb.png';
-import img_isro from '../assets/images/isro2.png';
-import img_bits from '../assets/images/bitspilani.png';
-import avatar from '../assets/images/avatar.png';
-import img_amex from '../assets/images/amex-logo.png';
-import pdf1 from '../assets/CV/Bhandari_Vitthal_CV.pdf';
-import book1 from '../assets/images/book1.png';
-import book2 from '../assets/images/book2.png';
-import book3 from '../assets/images/book3.png';
+import img1 from '../assets/images/vitthal_office_standing_pic.jpg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -89,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontFamily: "'Work Sans', sans-serif",
     fontWeight: 600,
-    fontSize: '48px',
+    fontSize: '40px',
     padding: '0px',
     textAlign: 'left',
     lineHeight: '1.2',
@@ -112,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: '1rem',
     lineHeight: '1.8',
-    textAlign: 'left',
+    textAlign: 'justify',
   },
   accordionbio: {
     fontFamily: "'Work Sans', sans-serif",
@@ -126,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
   pubs: {
     fontFamily: "'Work Sans', sans-serif",
     fontWeight: 600,
-    fontSize: '40px',
+    fontSize: '30px',
     padding: '0px',
     textAlign: 'left',
     lineHeight: '45pt',
@@ -267,16 +249,6 @@ export default function Home() {
 
     setValue({ ...value, left: open });
   };
-
-  const [expanded, setExpanded] = React.useState(true);
-
-  const interestlist = [
-    {"description": [`Learning from language in `, <b>multilingual, low-resource</b> ,` settings`]},
-    {"description": [<b>Debiasing</b>, " Large Language Models (LM's)"]},
-    {"description": ["Making LLM's ",<b>combat misinformation and hate speech</b>]},
-    // {"description": "Applications of Vision and Language in healthcare"}
-  ]
-
   return (
     <div className={classes.root}>
       {
@@ -313,9 +285,6 @@ export default function Home() {
           <Tab label="About" {...a11yProps(0)} className={classes.tab} />
           <Tab label="Publications" {...a11yProps(1)} />
           <Tab label="Projects" {...a11yProps(2)} />
-          <Tab label="My Bucket List" {...a11yProps(3)} />
-          <Tab label="Contact Me" {...a11yProps(4)} />
-          <Tab component={RouterLink} label="Blog" value='/blog' to='/blog' {...a11yProps(5)} />
           </Tabs>
           </Drawer>
           </Toolbar>
@@ -336,43 +305,21 @@ export default function Home() {
           <Tab label="About" {...a11yProps(0)} className={classes.tab} />
           <Tab label="Publications" {...a11yProps(1)} />
           <Tab label="Projects" {...a11yProps(2)} />
-          <Tab label="My Bucket List" {...a11yProps(3)} />
-          <Tab label="Contact Me" {...a11yProps(4)} />
-          <Tab component={RouterLink} label="Blog"  value='/blog' to='/blog' {...a11yProps(5)} />
         </Tabs>
       </AppBar>
       }
-      {/* <AppBar position={isTabletOrMobile ? "relative" : "fixed"} className={classes.appbar}>
-        <Tabs
-          orientation={isTabletOrMobile ? 'vertical' : 'horizontal'}
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-          classes={{ indicator: classes.indicator }}
-
-          variant={isTabletOrMobile ? "scrollable" : "standard"}
-          scrollButtons={isTabletOrMobile ? "on" : "off"}
-          centered
-        >
-          <Tab label="About" {...a11yProps(0)} className={classes.tab} />
-          <Tab label="Publications" {...a11yProps(1)} />
-          <Tab label="Projects" {...a11yProps(2)} />
-          <Tab label="My Bucket List" {...a11yProps(3)} />
-          <Tab label="Contact Me" {...a11yProps(4)} />
-        </Tabs>
-      </AppBar> */}
       <Grid container spacing={3} justify="center"  style={{ marginTop: '5px' }}>
 
         { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) && <Grid item xs={12} md={3} lg={3}>
           <Grid container spacing={5} direction="column" alignItems="center" justifyContent="center" style={{ marginTop: '40px' }}>
             
             <Grid item xs={12} style={{ marginTop: 'inherit'}}>
-              <img src={img1} alt="profile_pic" style={{ maxWidth: '57%', objectFit: 'contain', border: '#404040 1px solid', borderRadius: "50%", marginBottom: '15px' }}></img>
+              <img src={img1} alt="profile_pic" style={{ maxWidth: '57%', objectFit: 'contain', border: '#404040 1px solid', marginBottom: '15px' }}></img>
               <br></br>
               <Typography className={classes.name}>Vitthal</Typography>
               <Typography className={classes.name}>Bhandari</Typography>
               <br></br>
-              <Typography className={classes.subname} style={{ marginTop: '15px' }}>Engineer II</Typography>
+              <Typography className={classes.subname}>Engineer II</Typography>
               <Typography className={classes.subname}>American Express</Typography>
               <Typography className={classes.subname}>BITS Pilani batch of '21</Typography>
               <br></br>
@@ -442,97 +389,31 @@ export default function Home() {
           <TabPanel value={value['value']} index={0}>
             <Grid container spacing={0} style={{ marginTop: isTabletOrMobile?'0': '60px' }}>
 
-            {/* <Grid item xs={12} lg={6}>
+              <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   About Me
                 </Typography>
-              </Grid> */}
+              </Grid>
 
               <Grid item xs={12}>
                 
                 <Typography className={classes.bio}>
-                  <p>I am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their first homegrown fin-bot <i>ask-Finance</i>.</p>
+                  <p>I am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their homegrown fin-bot <i>ask-Finance</i>, which has a monthly footfall of over 5k sessions.</p>
 
                   <p>I graduated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021.</p>
 
-                  {/* <p>I have worked with modern technologies including React, Material UI, & Typescript (for frontend), Python & Flask (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p> */}
+                  <p>I have worked with modern technologies including Next.JS, React, Material UI, & Typescript (for frontend), Python, Flask & Sanic (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p>
 
-                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the use of LLMs in moderating hate speech on social media platforms. You can learn more about my research in the video below.</p>
-                  <div style={{display: 'flex', justifyContent: 'center'}}><MovieClip isTabletOrMobile={isTabletOrMobile}/></div>
-                {/* <Accordion expanded={expanded} onChange={() => {setExpanded(!expanded);}}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <b>For prospective recuiters</b>
-                  </AccordionSummary>
+                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the use of LLMs in moderating hate speech on social media platforms.</p>
 
-                  <AccordionDetails>
-                    <p className={classes.accordionbio}>
-                    I am looking for roles that challenge me in all/a subset of the following:
-                    <ol>
-                      <li key='0'>
-                        Fullstack development
-                      </li>
-                      <li key='1'>
-                        Machine Learning Engineering
-                      </li>
-                      <li key='2'>
-                        Natural Language Processing development/research
-                      </li>
-                    </ol>
-                  </p>
-                  </AccordionDetails>
-                </Accordion> */}
+                  <p>You can reach out to me at <Link href="mailto:vitthalbhandari98@gmail.com" className={classes.links}>vitthalbhandari98@gmail.com</Link> for any questions.
+                  
+                  I am also active on <Link target="_blank" href="https://www.linkedin.com/in/vitthal-bhandari/" className={classes.links}>LinkedIn</Link> and <Link target="_blank" href="https://twitter.com/vit_bhandari" className={classes.links}>Twitter</Link>.</p>
 
-
-
-                  {/* <p>I'm interested in language as a computational tool. My current work incorporates: 
-                  <ol>
-                    {interestlist.map(interest =>
-                      <li key={interest.key}>{interest.description}</li>
-                    )}
-                  </ol>
-
-                  </p> */}
                 </Typography>
 
               </Grid>
 
-              <Grid item xs={12} style={{ marginTop: '35px' }}>
-                <Grid container justify="center" style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap'}}>
-                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
-                    <img src={img_amex} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>AmEx, Gurgaon</Typography>
-                    <Typography className={classes.years}>Mar 2023-Present</Typography>
-                  </Grid>
-
-                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
-                    <img src={img_scb} alt="scb_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>SCB GBS, Bengaluru</Typography>
-                    <Typography className={classes.years}>Summer 2020</Typography>
-                    <Typography className={classes.years}>Fall 2021 - Feb 2023</Typography>
-                  </Grid>
-
-                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
-                    <img src={img_paypal} alt="paypal_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>PayPal, Bengaluru</Typography>
-                    <Typography className={classes.years}>Spring 2021</Typography>
-                  </Grid>
-
-                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px':'20px' }}>
-                    <img src={img_isro} alt="isro_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>RRSC, Jodhpur</Typography>
-                    <Typography className={classes.years}>Summer 2019</Typography>
-                  </Grid>
-                  <Grid item xs={12} lg={3} style={{ marginBottom: isTabletOrMobile ? '0px': '20px' }}>
-                    <img src={img_bits} alt="bits_logo" style={{ height: isTabletOrMobile ? '20px':'50px' }}></img>
-                    <Typography className={classes.institution}>BITS Pilani</Typography>
-                    <Typography className={classes.years}>2017 - 2021</Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
             </Grid>
           </TabPanel>
 
@@ -798,197 +679,7 @@ export default function Home() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={value['value']} index={3}>
-            <Grid container spacing={0} style={{ marginTop: '60px' }}>
-            <Grid item xs={12} lg={6}>
-              <Typography className={classes.pubs}>
-                My Reading List
-              </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar alt="book1" src={book1}  style={{minWidth: '100px', height: '120px', objectFit: 'contain'}} variant='rounded'/>
-                    </ListItemAvatar>
-                    <ListItemText
-                      style={{ paddingLeft: '10px'}}
-                      primary={<><strike>Advanced NLP with TensorFlow 2 </strike>&nbsp; &nbsp; <DoneOutlineIcon style={{ verticalAlign: 'middle', color: 'green' }}/></> }
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            Packt Publications
-                            <br></br>
-                          </Typography>
-                          {<Typography className={classes.book}>I'd really love to read this book. It contains recipes for a lot of advanced NLP tasks such as NLG, text summarization and POS tagging. I'll probably end up learning a lot about RNNs and more complex architectures.</Typography>}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar alt="book2" src={book2}  style={{minWidth: '100px', height: '120px', objectFit: 'contain'}} variant='square'/>
-                    </ListItemAvatar>
-                    <ListItemText
-                    style={{ paddingLeft: '10px'}}
-                      primary="Transformers for NLP"
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            Packt Publications
-                          </Typography>
-                          {<Typography className={classes.book}>I think this is a must read. I mean why not? Transformers are everywhere - BERT, GPT3, RoBERTa. I'll probably have to catch up fast before another big breakthrough in NLP.</Typography>}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar alt="book3" src={book3}  style={{minWidth: '100px', height: '150px', objectFit: 'contain'}} variant='square'/>
-                    </ListItemAvatar>
-                    <ListItemText
-                    style={{ paddingLeft: '10px'}}
-                      primary="An Introduction to Statistical Learning - Second Edition"
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            https://www.statlearning.com/
-                          </Typography>
-                          {<Typography className={classes.book}>I love classics, but ISLR is more than that. It's the beginning and much more. I remember reading a part of it during my undergrad, but reading it completely right now is a necessity - polishing my ML theory won't hurt!</Typography>}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              </Grid>
-
-              <Grid item xs={12} lg={6}>
-                <Typography className={classes.pubs}>
-                  My Task list
-                </Typography>
-              </Grid>
-
-              <Grid item xs={12}>
-
-                <List
-                  sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                  subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
-                      A few of the shared tasks I'm planning on participating in - of course if my time permits!
-                    </ListSubheader>
-                  }
-                >
-                  <ListItem>
-                    <ListItemText primary="WASSA @ ACL 2022" 
-                    secondary = {"is offering a Shared-Task on Empathy Detection and Emotion Classification"} />
-                  </ListItem>
-
-                </List>
-              </Grid>
-            </Grid>
-          </TabPanel>
-
-          <TabPanel value={value['value']} index={4}>
-            <Grid container spacing={0} style={{ marginTop: '60px' }}>
-              <Grid item xs={12}>
-                <img src={avatar} alt="avatar" style={{ height: '150px' }}></img>
-                <Typography className={classes.contact}>
-                  You can reach out to me on my <Link href="mailto:vitthalbhandari98@gmail.com" className={classes.links}>personal email</Link> for any questions or potential opportunities for collaboration.
-                  <br></br>
-                  I am also active on <Link target="_blank" href="https://www.linkedin.com/in/vitthal-bhandari/" className={classes.links}>LinkedIn</Link> and <Link target="_blank" href="https://twitter.com/vit_bhandari" className={classes.links}>Twitter</Link> if you wish to connect there.
-                </Typography>
-                <br></br>
-                <Typography className={classes.contact}>
-                  <EmailIcon style={{ verticalAlign: 'middle' }} /> vitthalbhandari98@gmail.com
-                </Typography>
-                <br></br>
-                <Divider />
-                <br></br>
-                <Typography className={classes.contact}>
-                  If you feel I'd be a good fit for your team in any of the below mentioned domains, I'd be more than happy to discuss possible collaborations!
-                </Typography>
-                <div className={classes.chips}>
-                  <Chip
-                    variant="outlined"
-                    size="medium"
-                    label="Low-resource/Zero-shot NLP"
-                    clickable
-                    color="primary"
-                  />
-                  <Chip
-                    variant="outlined"
-                    size="medium"
-                    label="Red teaming LLMs"
-                    clickable
-                    style={{ borderColor: "#1d9bf0", color: "#1d9bf0" }}
-                  />
-                  <Chip
-                    variant="outlined"
-                    size="medium"
-                    label="Content Moderation"
-                    clickable
-                    color="secondary"
-                  />
-                  <Chip
-                    variant="outlined"
-                    size="medium"
-                    label="Social Computing"
-                    clickable
-                    style={{ borderColor: "#ff9770", color: "#ff9770" }}
-                  />
-                </div>
-              </Grid>
-            </Grid>
-          </TabPanel>
-
         </Grid>
-
-        { ((isTabletOrMobile && value['value'] === 0) || (!isTabletOrMobile)) &&<Grid item xs={12} md={3} lg={3} style={{marginTop: '100px'}}>
-
-        <Grid item xs={12}><Typography className={classes.news_name}>News</Typography></Grid>
-        <Grid item xs={12}><nav aria-label="secondary mailbox folders" style={{paddingLeft: '0px', paddingRight: '32px'}}>
-            <List>
-            <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> November 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> 1 of only 50 people selected to attend the fourth <Link target="_blank" href="https://lig-alps.imag.fr/" className={classes.links}>Advanced Language Processing School</Link> (ALPS 2024) from Monday 1st to Friday 5th April 2024 in Grenoble, France. </Typography> } />
-            </ListItem>
-            <ListItem disablePadding>
-                <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> July 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Our manuscript was finally published in Springer after 2 years. </Typography> } />
-            </ListItem>
-            <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2023 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Attended the <Link target="_blank" href="https://trust-ai-workshop.github.io/" className={classes.links}>Workshop on Trustworthy AI</Link> on Jan 5 and Jan 6 hosted by Microsoft Research, Bengaluru. </Typography> } />
-              </ListItem>
-              <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> March 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> System description paper accepted at ACL 2022. Here is the <Link target="_blank" href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" className={classes.links}>Code</Link> and <Link target="_blank" href="https://arxiv.org/pdf/2203.14267.pdf" className={classes.links}>Preprint</Link>. </Typography> } />
-              </ListItem>
-              <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> February 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Achieved <Link target="_blank" href="https://competitions.codalab.org/competitions/36394#learn_the_details-results" className={classes.links}>ranks</Link> 9, 6, and 3 in English, Tamil, and Tanglish tracks respectively in the Shared Task below. Will share the system description paper soon. </Typography> } />
-              </ListItem>
-              <ListItem disablePadding>
-                  <ListItemText primary={ <Typography className={classes.news} style={{ fontSize: '13pt', fontStyle: 'italic' }}> January 2022 </Typography> } secondary={ <Typography className={classes.news} style={{ fontSize: '11pt' }}> Recently participated in the Shared Task on <Link target="_blank" href="https://competitions.codalab.org/competitions/36394" className={classes.links}>Homophobia/Transphobia Detection in social media comments</Link> at the 2nd<Link target="_blank" href="https://sites.google.com/view/lt-edi-2022/home" className={classes.links}> LT-EDI workshop</Link> to be held at ACL 2022 </Typography> } />
-              </ListItem>
-            </List>
-          </nav>
-          </Grid>
-        </Grid>}
 
       </Grid>
 
