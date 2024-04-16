@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubSquare, faLinkedin, faTwitterSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { useMediaQuery } from 'react-responsive';
-import img1 from '../assets/images/vitthal_office_standing_pic.jpg';
+import img1 from '../assets/images/vitthal_office_social_2.jpg';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     height: '3px',
   },
   name: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 600,
     fontSize: '40px',
     padding: '0px',
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
   subname: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     textAlign: 'left',
     lineHeight: '20pt',
@@ -90,14 +90,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
   bio: {
-    fontFamily: "'Work Sans', sans-serif",
-    fontWeight: 400,
+    fontFamily: "'Open Sans', sans-serif",
+    fontWeight: 500,
     fontSize: '1rem',
     lineHeight: '1.8',
     textAlign: 'justify',
   },
   accordionbio: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 500,
     fontSize: '11pt',
     textAlign: 'justify',
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#1d9bf0',
   },
   pubs: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 600,
     fontSize: '30px',
     padding: '0px',
@@ -120,25 +120,25 @@ const useStyles = makeStyles((theme) => ({
     padding: '7px'
   },
   pub_heading: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 500,
     fontSize: '13pt',
     textAlign: 'left',
   },
   pub_names: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'left',
   },
   pub_venue: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'left',
   },
   contact: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'center',
@@ -153,26 +153,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   institution: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '12px',
     textAlign: 'center',
   },
   years: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '11px',
     color: '#888',
     textAlign: 'center',
   },
   project: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '12pt',
     textAlign: 'justify',
   },
   project_heading: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 500,
     fontSize: '15pt',
     textAlign: 'left',
@@ -182,19 +182,19 @@ const useStyles = makeStyles((theme) => ({
     color: "white"
   },
   book: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 400,
     fontSize: '0.875rem',
     textAlign: 'left',
   },
   news: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 300,
     fontSize: '13pt',
     textAlign: 'justify',
   },
   news_name: {
-    fontFamily: "'Work Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontWeight: 600,
     fontSize: '25px',
     padding: '0px',
@@ -283,8 +283,8 @@ export default function Home() {
           scrollButtons={isTabletOrMobile ? "on" : "off"}
           >
           <Tab label="About" {...a11yProps(0)} className={classes.tab} />
-          <Tab label="Publications" {...a11yProps(1)} />
-          <Tab label="Projects" {...a11yProps(2)} />
+          <Tab label="Projects" {...a11yProps(1)} />
+          <Tab label="Publications" {...a11yProps(2)} />
           </Tabs>
           </Drawer>
           </Toolbar>
@@ -303,8 +303,8 @@ export default function Home() {
           centered
         >
           <Tab label="About" {...a11yProps(0)} className={classes.tab} />
-          <Tab label="Publications" {...a11yProps(1)} />
-          <Tab label="Projects" {...a11yProps(2)} />
+          <Tab label="Projects" {...a11yProps(1)} />
+          <Tab label="Publications" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       }
@@ -398,7 +398,7 @@ export default function Home() {
               <Grid item xs={12}>
                 
                 <Typography className={classes.bio}>
-                  <p>I am a fullstack engineer at American Express where I am part of the Ask Finance team, helping them build features for their homegrown fin-bot <i>ask-Finance</i>, which has a monthly footfall of over 5k sessions.</p>
+                  <p>I am a fullstack engineer at American Express, helping them build features for their homegrown fin-bot <i>ask-Finance</i>, which has a monthly footfall of over 5k sessions. I have worked on uscases ranging from frontend and backend to machine translation.</p>
 
                   <p>I graduated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021.</p>
 
@@ -417,7 +417,7 @@ export default function Home() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={value['value']} index={1}>
+          <TabPanel value={value['value']} index={2}>
             <Grid container spacing={0} style={{ marginTop: '60px' }}>
               
               <Grid item xs={12} lg={6}>
@@ -457,8 +457,33 @@ export default function Home() {
             </Grid>
           </TabPanel>
           
-          <TabPanel value={value['value']} index={2}>
+          <TabPanel value={value['value']} index={1}>
             <Grid container spacing={0} style={{ marginTop: '60px' }}>
+
+            <Grid item xs={12} lg={6}>
+                <Typography className={classes.pubs}>
+                  Miscellaneous
+                </Typography>
+              </Grid>
+
+              <Grid item className={classes.pub_item}>
+                <Typography className={classes.project_heading}>
+                  Minimalist Tile Matching Game
+                  <span style={{float: 'right'}}>
+                  <Link target="_blank" href="https://github.com/vitthal-bhandari/minimalistic-tile-matching-game" style={{paddingRight: '8px'}}>
+                      <FontAwesomeIcon
+                        icon={faGithub}
+                        size="lg"
+                        style={{ color: 'black'}}
+                      />
+                  </Link>             
+                  </span>   
+                </Typography>
+                <ul>
+                  <li className={classes.project}>Implemented a minimalist version of the tile-matching game in a Next.js project bootstrapped with create-next-app. Used Material UI for components and Redux for state management.  </li>
+                  <li className={classes.project}>Deployed the game on a vercel server at <Link href="https://minimalistic-tile-matching-game.vercel.app" className={classes.links}>minimalistic-tile-matching-game.vercel.app/</Link>.  </li>
+                </ul>
+              </Grid>
 
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
