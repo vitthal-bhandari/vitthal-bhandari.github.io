@@ -9,6 +9,7 @@ import { faGithubSquare, faLinkedin, faTwitterSquare, faGithub } from '@fortawes
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 import img1 from '../assets/images/vitthal_office_social_2.jpg';
+import pdf1 from '../assets/CV/Vitthal_Bhandari_CV_2024.pdf';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -324,8 +325,8 @@ export default function Home() {
               <Typography className={classes.subname}>BITS Pilani batch of '21</Typography>
               <br></br>
               <Grid container justify="center" style={{ marginTop: '10px' }}>
-                <BlueOnGreenTooltip  title="CV avaiable via email request" placement="top" arrow>
-                  <a className={classes.icon_link} target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href="mailto:vitthalbhandari98@gmail.com" rel='noopener noreferrer'>
+                <BlueOnGreenTooltip  title="CV" placement="top" arrow>
+                  <a className={classes.icon_link} target="_blank" style={{ color: '#a08036', paddingRight: '10px' }} href={pdf1} rel='noopener noreferrer'>
                     <i
                       className="ai ai-cv-square ai-2x"
                     >
