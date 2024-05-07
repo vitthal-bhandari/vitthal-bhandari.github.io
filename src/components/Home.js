@@ -399,7 +399,7 @@ export default function Home() {
               <Grid item xs={12}>
                 
                 <Typography className={classes.bio}>
-                  <p>I am an engineer at American Express, helping them build features for their homegrown fin-bot <i>ask-Finance</i>, which has a monthly footfall of over 5k sessions. I have worked on uscases ranging from frontend, UI design, and backend to artifical intelligence and developer productivity.</p>
+                  <p>I am a fullstack engineer at American Express, helping them build features for their homegrown fin-bot <i>ask-Finance</i>, which has a monthly footfall of over 5k sessions. I have worked on uscases ranging from frontend, UI design, and backend to artifical intelligence and developer productivity.</p>
 
                   <p>I graduated from <Link target="_blank" href="https://www.bits-pilani.ac.in/" className={classes.links}>Birla Institute of Technology and Science, Pilani</Link> with a major in Computer Science and minor in Data Science in 2021.</p>
 
