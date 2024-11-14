@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.5739ad41.chunk.css",
-    "main.js": "/static/js/main.fb345436.chunk.js",
-    "main.js.map": "/static/js/main.fb345436.chunk.js.map",
+    "main.js": "/static/js/main.74a42d18.chunk.js",
+    "main.js.map": "/static/js/main.74a42d18.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e82d928b.js",
     "runtime-main.js.map": "/static/js/runtime-main.e82d928b.js.map",
     "static/js/2.df675cb4.chunk.js": "/static/js/2.df675cb4.chunk.js",
@@ -12,7 +12,7 @@
     "index.html": "/index.html",
     "static/css/main.5739ad41.chunk.css.map": "/static/css/main.5739ad41.chunk.css.map",
     "static/js/2.df675cb4.chunk.js.LICENSE.txt": "/static/js/2.df675cb4.chunk.js.LICENSE.txt",
-    "static/media/Vitthal_Bhandari_CV_2024.14e5dbf5.pdf": "/static/media/Vitthal_Bhandari_CV_2024.14e5dbf5.pdf",
+    "static/media/Vitthal_Bhandari_CV_2024.1369162e.pdf": "/static/media/Vitthal_Bhandari_CV_2024.1369162e.pdf",
     "static/media/avatar.19b2972b.png": "/static/media/avatar.19b2972b.png",
     "static/media/img1.jpg": "/static/media/img1.0bae122b.jpg",
     "static/media/img10.jpg": "/static/media/img10.6207d2e3.jpg",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.e82d928b.js",
     "static/js/2.df675cb4.chunk.js",
     "static/css/main.5739ad41.chunk.css",
-    "static/js/main.fb345436.chunk.js"
+    "static/js/main.74a42d18.chunk.js"
   ]
 }
