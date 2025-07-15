@@ -363,7 +363,7 @@ export default function Home() {
                   />
                 </Link>
                 </BlueOnGreenTooltip >
-                <BlueOnGreenTooltip  title="Google Scholar" placement="top" arrow>
+                {/* <BlueOnGreenTooltip  title="Google Scholar" placement="top" arrow>
                 <a className={classes.icon_link}  target="_blank" style={{ color: '#2873EB', paddingRight: '10px' }} href="https://scholar.google.com/citations?user=ZfdsC-AAAAAJ&hl=en"  rel='noopener noreferrer'>
                   <i
                     className="ai ai-google-scholar-square ai-2x"
@@ -378,7 +378,7 @@ export default function Home() {
                   >
                   </i>
                 </a>
-                </BlueOnGreenTooltip >
+                </BlueOnGreenTooltip > */}
               </Grid>
             </Grid>
 
@@ -404,7 +404,7 @@ export default function Home() {
 
                   <p>I have worked with modern technologies including Next.JS, React, Material UI, & Typescript (for frontend), Python, Flask & Sanic (for backend), Solr, Oracle SQL, Elasticsearch, & Dremio (for indexing and storing data), and Git & Jenkins (for version control and CI/CD).</p>
 
-                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP, HCI, & Social Computing. To this end I have done extensive work on the use of LLMs in moderating hate speech on social media platforms.</p>
+                  <p>In a parallel world, I hustle and follow my passion for ML research. I have interests in NLP and HCI.</p>
 
                   <p>You can reach out to me at <Link href="mailto:vitthalbhandari98@gmail.com" className={classes.links}>vitthalbhandari98@gmail.com</Link> for any questions.
                   
@@ -420,13 +420,13 @@ export default function Home() {
           <TabPanel value={value['value']} index={2}>
             <Grid container spacing={0} style={{ marginTop: '60px' }}>
               
-              <Grid item xs={12} lg={6}>
+              {/* <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   Preprints
                 </Typography>
-              </Grid>
+              </Grid> */}
 
-              <Grid item xs={12} className={classes.pub_item}>
+              {/* <Grid item xs={12} className={classes.pub_item}>
                 <Typography className={classes.pub_heading}>On the Challenges of Building Datasets for Hate Speech Detection</Typography>
                 <Typography className={classes.pub_names}><u>Vitthal Bhandari</u></Typography>
                 <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>Arxiv</span> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://arxiv.org/abs/2309.02912/">MANUSCRIPT</a> </span></Typography>
@@ -442,7 +442,7 @@ export default function Home() {
                 <Typography className={classes.pub_heading}>bitsa_nlp@LT-EDI-ACL2022: Leveraging Pretrained Language Models for Detecting Homophobia and Transphobia in Social Media Comments</Typography>
                 <Typography className={classes.pub_names}><u>Vitthal Bhandari</u> and Poonam Goyal</Typography>
                 <Typography className={classes.pub_venue}><span style={{ fontWeight: 500 }}>ACL 2022</span> {'\u25Cb'} <em>The Second Workshop on LT-EDI</em> <span style={{float: 'right'}}> <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection">CODE</a> {'\u25Cf'}  <a className={classes.code_and_preprint} target="_blank" rel='noreferrer' href="https://aclanthology.org/2022.ltedi-1.18/">MANUSCRIPT</a> </span></Typography>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
@@ -485,13 +485,13 @@ export default function Home() {
                 </ul>
               </Grid>
 
-              <Grid item xs={12} lg={6}>
+              {/* <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
                   Shared Tasks
                 </Typography>
-              </Grid>
+              </Grid> */}
 
-              <Grid item className={classes.pub_item}>
+              {/* <Grid item className={classes.pub_item}>
                 <Typography className={classes.project_heading}>
                   Homophobia/Transphobia Detection in social media comments
                   <span style={{float: 'right'}}>
@@ -507,7 +507,7 @@ export default function Home() {
                 <ul>
                   <li className={classes.project}>Experimented with a variety of mono-lingual and multi-lingual transformer models along with data augmentation techniques for detection of homophobic/transphobic content among topical youtube comments in 3 settings: English, Tamil and code-mixed Tanglish language</li>
                 </ul>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12} lg={6}>
                 <Typography className={classes.pubs}>
