@@ -43,12 +43,12 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
+                <h2>Research <a href="#" id="toggle-text" onclick="toggleContent(); return false;">[ minimize ]</a></h2>
                 <p>
                   I'm currently interested in AI Safety from a variety of perspectives - evaluation of language models for hidden objectives/biases; pluralistic alignment of language models; emergent misalignment.
                 </p>
 
-                <div>
+                <div id="research-details">
                   <p>Here is some more information about me.</p>
                   
                   <ul>
@@ -185,5 +185,19 @@
         </td>
       </tr>
     </table>
+    <script>
+      function toggleContent() {
+        const detailsDiv = document.getElementById('research-details');
+        const toggleText = document.getElementById('toggle-text');
+        
+        if (detailsDiv.style.display === 'none') {
+          detailsDiv.style.display = 'block';
+          toggleText.textContent = '[ minimize ]';
+        } else {
+          detailsDiv.style.display = 'none';
+          toggleText.textContent = ' [ maximize ]';
+        }
+      }
+    </script>
   </body>
 </html>
