@@ -12,7 +12,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://vitthal-bhandari.github.io/blogs/blog1.html">
+    <meta property="og:url" content="https://vitthal-bhandari.github.io/blogs/first-quarter-uw.html">
     <meta property="og:title" content="Notes on my first quarter at UW">
     <meta property="og:description" content="Reflecting on my first quarter as a Master's student at UW after leaving a tech job in India. Thoughts on research, finding advisors, and the challenges of graduate school.">
     <meta property="og:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
@@ -21,63 +21,116 @@
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vitthal-bhandari.github.io/blogs/blog1.html">
+    <meta property="twitter:url" content="https://vitthal-bhandari.github.io/blogs/first-quarter-uw.html">
     <meta property="twitter:title" content="Notes on my first quarter at UW">
     <meta property="twitter:description" content="Reflecting on my first quarter as a Master's student at UW after leaving a tech job in India. Thoughts on research, finding advisors, and the challenges of graduate school.">
     <meta property="twitter:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
     <meta property="twitter:creator" content="@vit_bhandari">
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.7;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #fafafa;
+            font-size: 18px;
         }
-        article {
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 60px;
             background-color: white;
-            padding: 40px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
-        .back-link {
-            color: #0066cc;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
+        
         h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 0.3em;
         }
-        .blog-meta {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 30px;
-        }
+        
         h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            color: #2c3e50;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
             color: #34495e;
-            margin-top: 30px;
-            margin-bottom: 15px;
         }
+        
         p {
-            margin-bottom: 15px;
-            text-align: justify;
+            margin-bottom: 1.2em;
         }
-        blockquote {
+        
+        ul, ol {
+            margin-left: 2em;
+            margin-bottom: 1.2em;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+        
+        code {
             background-color: #f4f4f4;
-            border-left: 4px solid #3498db;
-            margin: 20px 0;
-            padding: 15px 20px;
-            font-style: italic;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+        
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2em auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        em {
             color: #555;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 1.5em 0;
+            border-radius: 4px;
+        }
+        
+        .arrow {
+            font-size: 1.1em;
         }
         .share-buttons {
             margin-top: 40px;
@@ -114,10 +167,31 @@
         .share-button.linkedin:hover {
             background-color: #005e93;
         }
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 30px;
+            }
+            
+            body {
+                font-size: 16px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
     </style>
 </head>
 <body>
-    <article>
+    <div class="container">
         <a href="./" class="back-link">← Back to Blog</a>
         
         <header>
@@ -175,6 +249,6 @@
             </a>
             <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://vitthal-bhandari.github.io/blogs/first-quarter-uw.html" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
         </div>
-    </article>
+    </div>
 </body>
 </html>
