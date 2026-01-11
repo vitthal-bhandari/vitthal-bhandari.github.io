@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments with building a BPE Tokenizer</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Experiments with building a BPE Tokenizer">
+    <meta name="description" content='I implemented a subset of Assignment 1 from Stanfords CS 336 (Language Modeling from Scratch) involving Byte-Pair Encoding (BPE) tokenization. I expected a "cute algorithm + a couple unit tests." What I got was a surprisingly real systems problem: data structures, CPU caches, file I/O, and a lot of "why is this slower?" moments.'>
+    <meta name="author" content="Vitthal Bhandari">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html">
+    <meta property="og:title" content="Experiments with building a BPE Tokenizer">
+    <meta property="og:description" content='I implemented a subset of Assignment 1 from Stanfords CS 336 (Language Modeling from Scratch) involving Byte-Pair Encoding (BPE) tokenization. I expected a "cute algorithm + a couple unit tests." What I got was a surprisingly real systems problem: data structures, CPU caches, file I/O, and a lot of "why is this slower?" moments.'>
+    <meta property="og:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
+    <meta property="article:published_time" content="2026-01-10">
+    <meta property="article:author" content="Vitthal Bhandari">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html">
+    <meta property="twitter:title" content="Experiments with building a BPE Tokenizer">
+    <meta property="twitter:description" content='I implemented a subset of Assignment 1 from Stanfords CS 336 (Language Modeling from Scratch) involving Byte-Pair Encoding (BPE) tokenization. I expected a "cute algorithm + a couple unit tests." What I got was a surprisingly real systems problem: data structures, CPU caches, file I/O, and a lot of "why is this slower?" moments.'>
+    <meta property="twitter:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
+    <meta property="twitter:creator" content="@vit_bhandari">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fafafa;
+            font-size: 18px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 0.3em;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+            color: #2c3e50;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
+            color: #34495e;
+        }
+        
+        p {
+            margin-bottom: 1.2em;
+        }
+        
+        ul, ol {
+            margin-left: 2em;
+            margin-bottom: 1.2em;
+        }
+        
+        li {
+            margin-bottom: 0.5em;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+        
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2em auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #555;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 1.5em 0;
+            border-radius: 4px;
+        }
+        
+        .arrow {
+            font-size: 1.1em;
+        }
+        .share-buttons {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .share-buttons h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .share-button {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .share-button:hover {
+            background-color: #0052a3;
+        }
+        .share-button.x {
+            background-color: #000000;
+        }
+        .share-button.x:hover {
+            background-color: #333333;
+        }
+        .share-button.linkedin {
+            background-color: #0077b5;
+        }
+        .share-button.linkedin:hover {
+            background-color: #005e93;
+        }
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 30px;
+            }
+            
+            body {
+                font-size: 16px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <a href="./" class="back-link">← Back to Blog</a>
+
+        <h1>Experiments with building a BPE Tokenizer</h1>
+        
+        <p>I implemented a subset of Assignment 1 from Stanford's CS 336 (Language Modeling from Scratch) involving Byte-Pair Encoding (BPE) tokenization. I expected a "cute algorithm + a couple unit tests." What I got was a surprisingly real systems problem: data structures, CPU caches, file I/O, and a lot of "why is this slower?" moments.</p>
+
+        <h2>Tokenization, BPE, and the Basic Algorithm</h2>
+        
+        <p>The lecture and assignment notes gave a great idea of why modern-day subword tokenizers are used in most language models - subword tokenization provides a decent tradeoff between a larger vocabulary size and better compression of the input byte sequence. When I first read the Byte-Pair Encoding (BPE) algorithm used by Sennrich et al. (2016), and its naïve example in the assignment notes, I was excited to try and implement the algorithm myself, without the help of Claude code and Cursor.</p>
+
+        <p>This is one of the benefits of being a full-time student - you are allowed to work on interesting problems with no immediate useful rewards!</p>
+
+        <p>The naïve implementation of BPE is actually quite simple if you think about it. You split the input corpus into pre-tokens, and then iteratively merge adjacent sets of byte-level tokens, starting from the most-frequent token pair. Every time you merge a byte-level token pair, it becomes a "sub-word" token, and it replaces all individual occurrences of the adjacent bytes with the merged token. The next maximally frequent pair of tokens is picked up, merged, and the process repeats.</p>
+
+        <ul>
+            <li>Start with a base vocabulary</li>
+            <li>Pre-tokenize the corpus</li>
+            <li>Repeatedly:
+                <ul>
+                    <li>Count all adjacent token pairs.</li>
+                    <li>Merge the most frequent pair into a new token.</li>
+                    <li>Update counts and repeat until you hit a target vocab size.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <img src="../images/bpe_merging_img.png" alt="BPE Algorithm">
+
+        <p>Simple, right? Well not quite so simple. It took me a couple of days to successfully pass all the test cases on my algorithm. I immediately tried jumping to the most "optimal" solution (thanks to years of leetcoding) and could not have guessed that the actual solution would end up involving a complex mix of data structures, optimization techniques, parallelization, and File I/O computer architecture internals. Phew! The catch is that "count all adjacent pairs, then update everything" becomes brutal once your dataset is gigabytes and your vocab target is 32K.</p>
+
+        <h2>Experimental Setup</h2>
+        
+        <ul>
+            <li><strong>Device</strong>: Apple M3 MacBook Air, 16GB RAM</li>
+            <li><strong>Datasets (size + doc delimiter counts)</strong>:
+                <ul>
+                    <li>TinyStories Val: <strong>22.5MB</strong> - <strong>27,630</strong> occurrences of <code>&lt;|endoftext|&gt;</code></li>
+                    <li>TinyStories Train: <strong>2.23GB</strong> - <strong>2,717,699</strong> occurrences of <code>&lt;|endoftext|&gt;</code></li>
+                    <li>OWT Val: <strong>290MB</strong> - <strong>59,059</strong> occurrences of <code>&lt;|endoftext|&gt;</code></li>
+                    <li>OWT Train: <strong>11.92GB</strong> - <strong>2,399,397</strong> occurrences of <code>&lt;|endoftext|&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>Vocab sizes</strong>:
+                <ul>
+                    <li>500 (TinyStories Val)</li>
+                    <li>10,000 (TinyStories Train)</li>
+                    <li>32,000 (OWT Val/Train)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <img src="../images/tok_perf_summary.png" alt="Datasets Tokenized">
+
+        <h3>What counts as "# merges" in my logs?</h3>
+        
+        <p>I start from:</p>
+        <ul>
+            <li>256 base byte tokens</li>
+            <li>+ special tokens (e.g. <code>&lt;|endoftext|&gt;</code>)</li>
+        </ul>
+
+        <p>Then I run:<br>
+        <code>merges = vocab_size - (256 + #specials)</code></p>
+
+        <p>That's why:</p>
+        <ul>
+            <li>vocab_size=500 <span class="arrow">→</span> merges=243 (with 1 special token)</li>
+            <li>vocab_size=10,000 <span class="arrow">→</span> merges=9,743</li>
+            <li>vocab_size=32,000 <span class="arrow">→</span> merges=31,743</li>
+        </ul>
+
+        <h2>Implementation Journey (What Actually Mattered)</h2>
+
+        <h3>1) Correctness First: the "off-by-a-few counts" bug</h3>
+        
+        <p>BPE correctness is fragile: if your pair counts drift even slightly, the merge order changes and unit tests explode.</p>
+
+        <p>The bug pattern I hit was something simple, yet an edge case I completely missed: <strong>repeated pairs inside a token sequence</strong> (e.g., <code>A B A B A B</code>). Naively updating "before/after" counts per occurrence can double-subtract or miss boundary pairs.</p>
+
+        <div class="highlight">
+            <p><span class="emoji">💡</span> <strong>My fix</strong>: compute the <em>before/after</em> adjacent-pair multiset per affected word, then apply a diff to <code>pair_counts</code> (<code>pair_counts</code> is a dictionary with token pairs as keys and their frequency in the corpus as values). It's more expensive than a purely local update, but it's very hard to get wrong. That got me past the unit tests and gave stable merges on TinyStories Val (243 merges) and beyond.</p>
+        </div>
+
+        <p><span class="emoji">✨</span> <strong>Nerd note</strong>: if you want both correctness <em>and</em> speed at scale, the next step is to track <strong>pair occurrences</strong> (positions), and update only local neighborhoods around each merge (no full rescans of the word). This is quite doable and I am thinking of using Cursor for a quick reimplementation. Will update here.</p>
+
+        <h3>2) Max-pair selection: O(N) scan vs heap (and why "O(log N)" can lie)</h3>
+        
+        <p>I tried two strategies for selecting the most frequent pair in each iteration:</p>
+        <ul>
+            <li><strong>O(N) scan</strong> of <code>pair_counts</code> to find argmax. (I use the max() function in Python to perform a linear scan and choose the pair with maximum frequency)</li>
+            <li><strong>Min-heap + lazy invalidation</strong> (I used Python 3.11 and max-heap is only introduced in Python 3.14)</li>
+        </ul>
+
+        <p>Honestly speaking, when I saw the problem at hand - I have to iteratively select the maximum-frequent token pair from the corpus - I thought using a max-heap was the obvious choice. the heap invariant keeps the maximally frequent element on top. It can be accessed in O(1) time, popped in O(1) time, and any new frequencies can be pushed with O(logN) complexity where N is the average heap size.</p>
+
+        <p>The improvement works! (and then it doesn't). For the tiny stories datasets and validation split of OWT, using a heap brings noticeable improvements in merging time. However this behavior doesn't extend to the (much larger) training set of the OWT split.</p>
+
+        <img src="../images/algorithmic_improvement_graph.png" alt="Algorithmic time improvement across datasets">
+
+        <p><strong>⚠️ There's a problem here ⚠️</strong></p>
+
+        <p>When I merge the maximally frequent tokens, I need to update all their occurences. Thus the pair counts of some existing pairs might have to be decremented. This is handled by the <code>pair_counts</code> dictionary. However, the stale entries of such pair counts in the heap persist and cannot be popped feasibly. Yikes!</p>
+
+        <p>This means, if the count of a pair is decreased, its stale entry might still persists in the heap, even though I just pushed its updated count. It also means, the heap size will increase a lot for larger datasets because the stale entries explode.</p>
+
+        <p>Lazy validation is simple -</p>
+        <ul>
+            <li>continue popping the maximally frequent pair from heap until</li>
+            <li>the count of the popped pair in heap matches its count in <code>pair_counts</code>, meaning you have popped the latest updated entry</li>
+            <li>continue with the rest of the merging algorithm</li>
+        </ul>
+
+        <p>The heap looks like an asymptotic win, but there's a systems caveat:</p>
+        <ul>
+            <li>If you generate too many stale heap entries, <code>heappop()</code> can end up discarding huge piles of junk and become slower than the scan.</li>
+            <li>For large runs, I had to add <strong>heap compaction</strong> (periodic rebuild from <code>pair_counts</code>) to prevent pathological slowdown.</li>
+        </ul>
+
+        <p>The run logs show both sides of the story:</p>
+        <ul>
+            <li><strong>TinyStories Train (10k vocab)</strong>:
+                <ul>
+                    <li>O(N) scan <span class="arrow">→</span> total <strong>219.54s</strong>, merge <strong>31.92s</strong></li>
+                    <li>heap <span class="arrow">→</span> total <strong>189.35s</strong>, merge <strong>2.87s</strong></li>
+                    <li>(heap was a clear win here) <span class="emoji">✅</span></li>
+                </ul>
+            </li>
+            <li><strong>OWT Train (32k vocab)</strong>:
+                <ul>
+                    <li>O(N) scan <span class="arrow">→</span> total <strong>11588.80s</strong>, merge <strong>11306.64s</strong></li>
+                    <li>heap <code>20260109_162315</code> <span class="arrow">→</span> total <strong>21018.43s</strong>, merge <strong>20672.69s</strong></li>
+                    <li>(heap got <em>worse</em> due to stale-entry churn) <span class="emoji">❌</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>Translation: "O(log N)" is real for <em>argmax extraction</em>, but your actual runtime is dominated by how much you mutate counts + how much garbage the heap accumulates.</p>
+
+        <h3>3) Parallelization: pre-tokenization is embarrassingly parallel; merging is not</h3>
+        
+        <p>Pre-tokenization is easy to parallelize because chunks can be processed independently. BPE merging is fundamentally sequential because merge (t+1) depends on the exact state after merge (t).</p>
+
+        <img src="../images/multiprocessing_graph.png" alt="Multiprocessing effect on total time">
+
+        <p>I parallelized pre-tokenization with <code>multiprocessing</code>:</p>
+        <ul>
+            <li>Split the file into <strong>chunk boundaries aligned on <code>&lt;|endoftext|&gt;</code></strong> (avoid cross-document merges).</li>
+            <li>Each worker reads its chunk and returns a <code>Counter</code> of pre-token byte strings.</li>
+            <li>The parent merges counters into a global count map.</li>
+        </ul>
+
+        <p>This sped up pre-tokenization substantially, but I learned the hard way that:</p>
+        <ul>
+            <li>spawning too many workers on a laptop can cause <strong>memory spikes</strong> (huge decoded strings + counters per worker),</li>
+            <li>which can lead to system instability.</li>
+            <li>my poor little Macbook crashed and rebooted multiple times initially</li>
+        </ul>
+
+        <p>The fix was "boring but effective":</p>
+        <ul>
+            <li>fewer workers (default 4),</li>
+            <li>smaller chunk sizes (target ~16MB),</li>
+            <li>avoid materializing <code>split()</code> lists in memory,</li>
+            <li>recycle workers (<code>maxtasksperchild=1</code>).</li>
+        </ul>
+
+        <p>Concrete pre-tokenization wins experimental runs:</p>
+        <ul>
+            <li>TinyStories Train, O(N):
+                <ul>
+                    <li>no MP <span class="arrow">→</span> pretok <strong>187.61s</strong></li>
+                    <li>with MP <span class="arrow">→</span> pretok <strong>54.38s</strong></li>
+                </ul>
+            </li>
+            <li>TinyStories Train, heap:
+                <ul>
+                    <li>no MP <span class="arrow">→</span> pretok <strong>186.48s</strong></li>
+                    <li>with MP <span class="arrow">→</span> pretok <strong>55.20s</strong></li>
+                </ul>
+            </li>
+        </ul>
+
+        <p><strong>Same pretokenization code, ~3.4× faster</strong>. That's multiprocessing doing its job.</p>
+
+        <h3>4) File caching is real (and it will gaslight your benchmarks)</h3>
+        
+        <p>I saw runs where "identical" pre-tokenization code was 2× faster on the second attempt. The reason was not magic — just OS page cache + CPU scheduling + thermals. Benchmarking on laptops requires discipline:</p>
+        <ul>
+            <li>alternate run order,</li>
+            <li>discard the first warm run,</li>
+            <li>pin your settings as much as possible.</li>
+        </ul>
+
+        <p>You can see this effect in the OWT Val O(N) runs which had a runtime randomly varying between 33 and 38 minutes.</p>
+
+        <p>Same dataset and method; different run time. Your laptop is a noisy lab instrument.</p>
+
+        <p>I learned that a good representation of total tokenization time should be an average across 3-5 runs, excluding the first run. For all my experiments, I averaged the time taken for 3 runs after excluding the first cold run.</p>
+
+        <h2>Results (Numbers)</h2>
+        
+        <p>Below are the headline results from multiple experimental runs.</p>
+
+        <img src="../images/merge_time_graph.png" alt="Merge time graph">
+
+        <h3>TinyStories Val (22.5MB, 500 vocab, 243 merges)</h3>
+        
+        <p>Without multiprocessing:</p>
+        <ul>
+            <li>O(N) scan <span class="arrow">→</span> total <strong>2.01s</strong> (pretok 1.80s, merge 0.21s)</li>
+            <li>heap <span class="arrow">→</span> total <strong>2.00s</strong> (pretok 1.81s, merge 0.19s)</li>
+        </ul>
+
+        <p>With multiprocessing:</p>
+        <ul>
+            <li>O(N) scan <span class="arrow">→</span> total <strong>0.74s</strong> (pretok 0.52s, merge 0.22s)</li>
+            <li>heap <span class="arrow">→</span> total <strong>0.72s</strong> (pretok 0.52s, merge 0.20s)</li>
+        </ul>
+
+        <p>Takeaway: on tiny inputs, all optimizations are basically "meh"; overhead dominates. <strong><em>Pre-tokenization is the bottleneck</em></strong>. Parallelizations helps bring down pre-tokenization time!</p>
+
+        <h3>TinyStories Train (2.23GB, 10k vocab, 9,743 merges)</h3>
+        
+        <p>Without multiprocessing:</p>
+        <ul>
+            <li>O(N) scan <span class="arrow">→</span> total <strong>219.54s</strong> (pretok 187.61s, merge 31.92s)</li>
+            <li>heap <span class="arrow">→</span> total <strong>189.35s</strong> (pretok 186.48s, merge 2.87s)</li>
+        </ul>
+
+        <p>With multiprocessing:</p>
+        <ul>
+            <li>O(N) scan <span class="arrow">→</span> total <strong>86.62s</strong> (pretok 54.38s, merge 32.24s)</li>
+            <li>heap <span class="arrow">→</span> total <strong>57.99s</strong> (pretok 55.20s, merge 2.79s)</li>
+        </ul>
+
+        <p>Takeaway: this is the "sweet spot" where heap + MP looks god-tier. <strong><em>Pre-tokenization is still the bottleneck</em></strong>. Parallelizations helps bring down pre-tokenization time and heap brings down merging time!</p>
+
+        <h3>OWT Val (290MB, 32k vocab, 31,743 merges)</h3>
+        
+        <p>With multiprocessing (these runs are already merge-dominated):</p>
+        <ul>
+            <li>O(N) scan: two runs
+                <ul>
+                    <li><code>run_1</code> <span class="arrow">→</span> total <strong>1983.55s</strong> (pretok 6.70s, merge 1976.85s)</li>
+                    <li><code>run_2</code> <span class="arrow">→</span> total <strong>2315.59s</strong> (pretok 7.48s, merge 2308.11s)</li>
+                </ul>
+            </li>
+            <li>heap: two runs
+                <ul>
+                    <li><code>run_1</code> <span class="arrow">→</span> total <strong>107.74s</strong> (pretok 7.15s, merge 100.60s)</li>
+                    <li><code>run_2</code> <span class="arrow">→</span> total <strong>111.81s</strong> (pretok 7.20s, merge 104.61s)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>Takeaway: on OWT Val, heap wins massively (merge time drops from ~2k seconds to ~100 seconds).</p>
+
+        <h3>OWT Train (11.92GB, 32k vocab, 31,743 merges)</h3>
+        
+        <p>With multiprocessing:</p>
+        <ul>
+            <li>O(N) scan <span class="arrow">→</span> total <strong>11588.80s</strong> (pretok 282.16s, merge 11306.64s)</li>
+            <li>heap <span class="arrow">→</span> total <strong>21018.43s</strong> (pretok 345.74s, merge 20672.69s)</li>
+        </ul>
+
+        <p>Takeaway: this is where the "heap version should be faster" intuition died. The algorithmic story is bigger than argmax selection.</p>
+
+        <h2>Findings (TL;DR)</h2>
+
+        <h3>Data structure optimization helps—until it doesn't</h3>
+        <ul>
+            <li>Heap-based selection is great when the heap stays "clean."</li>
+            <li>Lazy invalidation can accumulate stale entries and tank performance on big corpora.</li>
+            <li>Practical fix: <strong>heap compaction</strong> when <code>len(heap) >> len(pair_counts)</code>.</li>
+        </ul>
+
+        <h3>"O(log N)" isn't the bottleneck; update cost per merge is</h3>
+        
+        <p>On OWT Train, both methods are ~98% merge time. That screams: optimize the <em>merge update</em> mechanics.</p>
+
+        <p>If you want to go full nerd, the real performance roadmap looks like:</p>
+        <ul>
+            <li>represent each pre-token as a mutable sequence (linked list / arrays of next pointers),</li>
+            <li>maintain pair occurrences (pair <span class="arrow">→</span> positions),</li>
+            <li>update only the 2-neighborhood around each merged occurrence.</li>
+        </ul>
+
+        <p>That's how you get from "hours" to "minutes" on 32k merges.</p>
+
+        <h3>Bottlenecks shift with dataset size</h3>
+        <ul>
+            <li>Small datasets: selection strategy matters a bit; everything is fast.</li>
+            <li>Mid datasets: pre-tokenization becomes noticeable.</li>
+            <li>Large datasets (OWT train): <strong>merging dominates</strong>; the main win is optimizing <em>update cost per merge</em>, not just argmax selection.</li>
+        </ul>
+
+        <h3>Multiprocessing is a win (with guardrails)</h3>
+        <ul>
+            <li>Pre-tokenization parallelizes cleanly.</li>
+            <li>But "max workers" is not the goal; "max throughput without memory death" is.</li>
+        </ul>
+
+        <h3>Longest-token artifacts are a reality check</h3>
+        
+        <p>On OWT, my longest learned tokens sometimes decode into weird byte soup (e.g., repeated "Ã/Ä" glyphs). That's not necessarily a bug: BPE operates over bytes and happily merges non-UTF8-friendly sequences if they're frequent.</p>
+
+        <h2>Conclusion</h2>
+        
+        <p>Tokenization looks like an NLP detail until you implement it. Then it becomes a systems problem.</p>
+
+        <p>If I were to take this further, the next frontier is a more advanced merging implementation:</p>
+        <ul>
+            <li>track <strong>pair occurrences</strong> (not just "which words contain the pair") <span class="emoji">👨🏻‍💻</span></li>
+            <li>update only local neighborhoods around merged occurrences <span class="emoji">😎</span></li>
+            <li>avoid global rescans/diffs per merge <span class="emoji">😩</span></li>
+            <li>use doubly linked lists <span class="emoji">⬅️ ➡️</span></li>
+        </ul>
+
+        <p><strong>Tokenization is fun. Tokenization is pain. Tokenization is real engineering.</strong></p>
+
+        <div class="share-buttons">
+            <h3>Share this post:</h3>
+            <a href="https://twitter.com/intent/tweet?text=Notes%20on%20my%20first%20quarter%20at%20UW&url=https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html" target="_blank" class="share-button x">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style="vertical-align: middle; margin-right: 6px;">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Share on X
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
+        </div>
+    </div>
+</body>
+</html>
