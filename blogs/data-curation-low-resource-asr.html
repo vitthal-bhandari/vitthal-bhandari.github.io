@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Curation for Low-Resource ASR: Scaling & Quality Experiments</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Data Curation for Low-Resource ASR: Scaling & Quality Experiments">
+    <meta name="description" content="Follow-up experiments from my ACL 2026 paper on low-resource speech modeling. I run data ablations across 6 indigenous languages and show how curation quality drives both scaling behavior and LM decoding gains.">
+    <meta name="author" content="Vitthal Bhandari">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html">
+    <meta property="og:title" content="Data Curation for Low-Resource ASR: Scaling & Quality Experiments">
+    <meta property="og:description" content="Follow-up experiments from my ACL 2026 paper on low-resource speech modeling. I run data ablations across 6 indigenous languages and show how curation quality drives both scaling behavior and LM decoding gains.">
+    <meta property="og:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
+    <meta property="article:published_time" content="2026-06-19">
+    <meta property="article:author" content="Vitthal Bhandari">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html">
+    <meta property="twitter:title" content="Data Curation for Low-Resource ASR: Scaling & Quality Experiments">
+    <meta property="twitter:description" content="Follow-up experiments from my ACL 2026 paper on low-resource speech modeling. I run data ablations across 6 indigenous languages and show how curation quality drives both scaling behavior and LM decoding gains.">
+    <meta property="twitter:image" content="https://vitthal-bhandari.github.io/images/vitthal5.jpg">
+    <meta property="twitter:creator" content="@vit_bhandari">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fafafa;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2em;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 0.3em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.8em;
+            margin-bottom: 0.7em;
+            color: #2c3e50;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
+            margin-bottom: 0.5em;
+            color: #34495e;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+        }
+
+        ul, ol {
+            margin-left: 2em;
+            margin-bottom: 1.2em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2em auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .fig-caption {
+            text-align: center;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: -1.2em;
+            margin-bottom: 2em;
+            font-style: italic;
+        }
+
+        .meta {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 2em;
+        }
+
+        .highlight {
+            background-color: #f0f6ff;
+            padding: 16px 20px;
+            border-left: 4px solid #0066cc;
+            margin: 1.5em 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        em {
+            color: #555;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .share-buttons {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .share-buttons h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .share-button {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .share-button:hover {
+            background-color: #0052a3;
+        }
+
+        .share-button.x {
+            background-color: #000000;
+        }
+
+        .share-button.x:hover {
+            background-color: #333333;
+        }
+
+        .share-button.linkedin {
+            background-color: #0077b5;
+        }
+
+        .share-button.linkedin:hover {
+            background-color: #005e93;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 30px;
+            }
+
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./" class="back-link">← Back to Blog</a>
+
+        <h1>Data Curation for Low-Resource ASR: Scaling &amp; Quality Experiments</h1>
+        <p class="meta">Vitthal Bhandari &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; University of Washington</p>
+
+        <p>
+            My <a href="https://vitthal-bhandari.github.io" target="_blank">ACL 2026 paper</a> introduced a framework for modeling linguistic diversity in spontaneous speech for low-resource languages. One thread I didn't get to fully explore in the paper is what happens when you change <em>how much</em> and <em>how clean</em> your data is. This post covers those follow-up experiments.
+        </p>
+
+        <p>
+            The short version: <strong>data quality matters more than data quantity</strong> at these scales, and the signal shows up clearly and consistently across all six languages I tested.
+        </p>
+
+        <h2>Setup</h2>
+
+        <p>
+            The experiments run on six indigenous languages with varying amounts of transcribed speech, ranging from a few hours to roughly 30 hours of audio. All experiments use MMS (Meta's Massively Multilingual Speech model) as the backbone, fine-tuned per language. I compare three data conditions:
+        </p>
+
+        <ul>
+            <li><strong>Raw:</strong> all available transcribed audio, no filtering</li>
+            <li><strong>Hard-filtered:</strong> clips outside the 5th–95th duration percentile removed; clips with high character 4-gram repetition (above p99) removed (~89% retention)</li>
+            <li><strong>Curated:</strong> hard filters + soft ranking via a character-level KenLM perplexity model trained on the training transcripts, retaining the bottom 60% by perplexity (~54% final retention)</li>
+        </ul>
+
+        <p>
+            For decoding, I use a word-level KenLM 4-gram ARPA built on the full raw training split — held constant across all conditions so that any WER differences are attributable to the acoustic model alone, not the language model.
+        </p>
+
+        <h2>Experiment 1: Scaling Curves</h2>
+
+        <p>
+            The first question is straightforward: across different training set sizes, does curation help?
+        </p>
+
+        <img src="../images/scaling-curves-wer.png" alt="WER vs. training hours for raw vs. curated data across 6 languages">
+        <p class="fig-caption">Figure 1. WER vs. training hours (MMS fine-tuned) for raw and curated data splits, aggregated across 6 languages. Curated data consistently yields lower WER at every budget.</p>
+
+        <p>
+            The scaling curves tell a clear story. Across all six languages, the curated split consistently outperforms the raw split at every training budget. The gap is largest in the low-data regime — which is exactly where we care most. When you only have a couple of hours of audio, the noise floor on raw crowdsourced or scraped data is high enough that it actively hurts training.
+        </p>
+
+        <p>
+            The practical implication is that for low-resource ASR, you're almost always better off training on 54% of well-curated data than 100% of noisy data. This is a fairly strong result for data ablations at this scale.
+        </p>
+
+        <h2>Experiment 2: Curation Quality Predicts LM Decoding Gains</h2>
+
+        <p>
+            The second experiment asks a more subtle question: can you predict how much a language model will help at inference time, just by looking at the quality of your training data?
+        </p>
+
+        <img src="../images/curation-quality-lm-decoding.png" alt="Scatter plot: mean training-set KenLM perplexity vs. absolute LM WER improvement, one point per language">
+        <p class="fig-caption">Figure 2. Mean training-set KenLM perplexity (x-axis) vs. absolute WER improvement from LM decoding (y-axis). Each point is one language. Higher perplexity training sets see larger LM gains.</p>
+
+        <div class="highlight">
+            <p>
+                The Pearson correlation between mean training-set KenLM perplexity and absolute LM WER improvement is strong and positive across all six languages. Languages whose training data is noisier (higher perplexity) benefit more from LM decoding at inference — which makes sense, but is nice to see quantified.
+            </p>
+        </div>
+
+        <p>
+            What this means practically: KenLM perplexity on your training set is a cheap proxy for data quality, and it tells you in advance how much headroom you have for LM rescoring gains. If your training perplexity is already low (clean data), the LM won't move the needle much because the acoustic model already learned clean speech patterns. If it's high (noisy data), an LM can compensate — but you'd be better off cleaning the data in the first place.
+        </p>
+
+        <h2>What This Means for Efficient Speech Modeling</h2>
+
+        <p>
+            The broader takeaway for low-resource speech modeling is that data curation is a first-class lever, not an afterthought. A two-stage pipeline — hard filters for obvious garbage, then soft ranking via a language model perplexity score — is lightweight to implement and pays off consistently.
+        </p>
+
+        <p>
+            A few things I'd flag for practitioners:
+        </p>
+
+        <ul>
+            <li><strong>Set your perplexity threshold per-language.</strong> The right retention rate will vary depending on how much data you start with and how noisy your source is. 60% worked well here but isn't a magic number.</li>
+            <li><strong>Hold your LM constant across conditions</strong> when measuring acoustic model ablations. It's easy to accidentally conflate the two sources of improvement.</li>
+            <li><strong>Perplexity as a diagnostic.</strong> Before running any fine-tuning, computing mean training-set perplexity is a fast sanity check on data quality and gives you a rough prediction of how much LM rescoring will help post-hoc.</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+
+        <p>
+            A few directions I'm curious about: whether cross-lingual perplexity models (trained on a related higher-resource language) can stand in for per-language KenLM models in truly zero-resource settings, and whether these curation findings hold for encoder-decoder models like Whisper. Both feel tractable and I'm hoping to run those experiments soon.
+        </p>
+
+        <p>
+            The ACL paper has more details on the language selection, model configuration, and main results table — happy to share on request.
+        </p>
+
+        <div class="share-buttons">
+            <h3>Share this post</h3>
+            <a href="https://twitter.com/intent/tweet?url=https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html&text=Data+Curation+for+Low-Resource+ASR:+Scaling+%26+Quality+Experiments+by+@vit_bhandari" target="_blank" class="share-button x">Share on X</a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html&title=Data+Curation+for+Low-Resource+ASR" target="_blank" class="share-button linkedin">Share on LinkedIn</a>
+        </div>
+    </div>
+</body>
+</html>
