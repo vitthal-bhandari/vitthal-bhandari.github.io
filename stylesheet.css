@@ -134,6 +134,32 @@ h2 {
   margin-top: 1px;
 }
 
+.pub-extra {
+  display: none;
+}
+
+#publist.show-details .pub-extra {
+  display: block;
+}
+
+.pub-toggle {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #1772d0;
+  cursor: pointer;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.pub-toggle:hover,
+.pub-toggle:focus {
+  color: #f09228;
+  outline: none;
+}
+
 .name {
   padding-top: 20px;
   margin: 0 0 12px 0;

@@ -70,6 +70,7 @@
             <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
+                <button type="button" id="toggle-pub-details" class="pub-toggle" aria-pressed="false" aria-controls="publist">Show details</button>
                 <!--
                 <p>
                   My interests lie in efficient language modeling, adaptive agentic memory, and software engineering !!!
@@ -132,13 +133,15 @@
               </td>
             </tr>
           </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table id="publist" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
             <tr>
               <td style="padding:16px;width:100%;vertical-align:top" class="publication">
                 <span class="papertitle">Adaptive Memory for LLM Agents over Long-Horizon Settings</span>
                 <div class="pub-status"><em>Graduate Thesis — In Progress, with Prof. Lucy Wang</em></div>
-                <p class="pub-desc">Exploring adaptive memory layer solutions for LLM agents over long-horizon settings. Working with Prof. Lucy Wang on replicating memory evals for coding agents with ~1M context, and improving memory recall for long trajectories.</p>
+                <div class="pub-extra">
+                  <p class="pub-desc">Exploring adaptive memory layer solutions for LLM agents over long-horizon settings. Working with Prof. Lucy Wang on replicating memory evals for coding agents with ~1M context, and improving memory recall for long trajectories.</p>
+                </div>
               </td>
             </tr>
 
@@ -147,9 +150,11 @@
                 <a href="https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html" target="_blank">
                   <span class="papertitle">Data Curation for Low-Resource ASR: How Much Data Is Enough?</span>
                 </a>
-                <div class="pub-status"><em>Follow-up Experiments</em></div>
-                <p class="pub-desc">Asked myself: "How much data is enough data?". Conducted data curation experiments on 6 languages by finetuning only on low-perplexity utterances and found that using high-quality curated data often leads to faster convergence as opposed to full finetuning.</p>
-                <div class="pub-links"><a href="https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html" target="_blank">Blog</a></div>
+                <div class="pub-status"><em>Follow-up Experiments after ACL + Blog</em></div>
+                <div class="pub-extra">
+                  <p class="pub-desc">Asked myself: "How much data is enough data?". Conducted data curation experiments on 6 languages by finetuning only on low-perplexity utterances and found that using high-quality curated data often leads to faster convergence as opposed to full finetuning.</p>
+                  <div class="pub-links"><a href="https://vitthal-bhandari.github.io/blogs/data-curation-low-resource-asr.html" target="_blank">Blog</a></div>
+                </div>
               </td>
             </tr>
 
@@ -160,8 +165,10 @@
                 </a>
                 <div class="pub-authors"><strong>Vitthal Bhandari</strong>, Tiya Kumar, Kate Mulhern</div>
                 <div class="pub-status"><em>Oral — ACL 2026 Workshop on Computational Methods for Endangered Languages</em></div>
-                <p class="pub-desc">Led an end-to-end ASR project on 21 extremely low-resource languages (under 10 hours of spontaneous Mozilla Common Voice speech). Fine-tuned MMS-1b, XLS-R-1b, and Whisper-large, built a KenLM n-gram ARPA pipeline and integrated pyctcdecode beam search with shallow fusion. 4-gram LM decoding beat greedy decoding by up to 27%. Presented as an oral paper at at ACL 2026.</p>
-                <div class="pub-links"><a href="https://aclanthology.org/2026.computel-1.5//" target="_blank">Paper</a> | <a href="https://github.com/vitthal-bhandari/low-resource-asr" target="_blank">Code</a></div>
+                <div class="pub-extra">
+                  <p class="pub-desc">Led an end-to-end ASR project on 21 extremely low-resource languages (under 10 hours of spontaneous Mozilla Common Voice speech). Fine-tuned MMS-1b, XLS-R-1b, and Whisper-large, built a KenLM n-gram ARPA pipeline and integrated pyctcdecode beam search with shallow fusion. 4-gram LM decoding beat greedy decoding by up to 27%. Presented as an oral paper at at ACL 2026.</p>
+                  <div class="pub-links"><a href="https://aclanthology.org/2026.computel-1.5//" target="_blank">Paper</a> | <a href="https://github.com/vitthal-bhandari/low-resource-asr" target="_blank">Code</a></div>
+                </div>
               </td>
             </tr>
 
@@ -171,8 +178,10 @@
                   <span class="papertitle">Language Modeling from Scratch: Experiments with BPE Tokenization</span>
                 </a>
                 <div class="pub-status"><em>Course Project — Stanford CS 336</em></div>
-                <p class="pub-desc">Implemented language modelling from scratch using Python and PyTorch. Most interesting finding was how much tokenization can be made more efficient through proper use of data structures and multithreading. See blog and code!</p>
-                <div class="pub-links"><a href="https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html" target="_blank">Blog</a> | <a href="https://github.com/vitthal-bhandari/cs-336-assignment1-llms/" target="_blank">Code</a></div>
+                <div class="pub-extra">
+                  <p class="pub-desc">Implemented language modelling from scratch using Python and PyTorch. Most interesting finding was how much tokenization can be made more efficient through proper use of data structures and multithreading. See blog and code!</p>
+                  <div class="pub-links"><a href="https://vitthal-bhandari.github.io/blogs/experiments-with-tokenization.html" target="_blank">Blog</a> | <a href="https://github.com/vitthal-bhandari/cs-336-assignment1-llms/" target="_blank">Code</a></div>
+                </div>
               </td>
             </tr>
 
@@ -183,8 +192,10 @@
                 </a>
                 <div class="pub-authors"><strong>Vitthal Bhandari</strong></div>
                 <div class="pub-status"><em>Preprint</em></div>
-                <p class="pub-desc">This paper presents a comprehensive framework that standardizes the dataset creation pipeline across seven critical checkpoints by identifying systemic challenges in hate speech dataset creation.</p>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2309.02912" target="_blank">arXiv</a></div>
+                <div class="pub-extra">
+                  <p class="pub-desc">This paper presents a comprehensive framework that standardizes the dataset creation pipeline across seven critical checkpoints by identifying systemic challenges in hate speech dataset creation.</p>
+                  <div class="pub-links"><a href="https://arxiv.org/abs/2309.02912" target="_blank">arXiv</a></div>
+                </div>
               </td>
             </tr>
 
@@ -195,8 +206,10 @@
                 </a>
                 <div class="pub-authors"><strong>Vitthal Bhandari</strong> and Poonam Goyal</div>
                 <div class="pub-status"><em>Poster - ACL 2022 Workshop on Language Technology for Equality, Diversity and Inclusion</em></div>
-                <p class="pub-desc">I contributed to a shared task focused on identifying homophobic and transphobic content in YouTube comments by implementing basic classifiers using multilingual pre-trained language models to analyze English, Tamil, and code-mixed datasets.</p>
-                <div class="pub-links"><a href="https://aclanthology.org/2022.ltedi-1.18/" target="_blank">Paper</a> | <a href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" target="_blank">Code</a></div>
+                <div class="pub-extra">
+                  <p class="pub-desc">I contributed to a shared task focused on identifying homophobic and transphobic content in YouTube comments by implementing basic classifiers using multilingual pre-trained language models to analyze English, Tamil, and code-mixed datasets.</p>
+                  <div class="pub-links"><a href="https://aclanthology.org/2022.ltedi-1.18/" target="_blank">Paper</a> | <a href="https://github.com/vitthal-bhandari/Homophobia-Transphobia-Detection" target="_blank">Code</a></div>
+                </div>
               </td>
             </tr>
 
@@ -207,7 +220,9 @@
                 </a>
                 <div class="pub-authors">Rehana Khan, <strong>Vitthal Bhandari</strong>, Sundaresan Raman, Abhishek Vyas, Akshay Raman, Maitreyee Roy and Rajiv Raman</div>
                 <div class="pub-status"><em>Springer Nature - Teleophthalmology and Digital Health: A Practical Guide to Applications</em></div>
-                <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-24052-2_9" target="_blank">Paper</a></div>
+                <div class="pub-extra">
+                  <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-24052-2_9" target="_blank">Paper</a></div>
+                </div>
               </td>
             </tr>
 
@@ -260,18 +275,17 @@
       </tr>
     </table>
     <script>
-      function toggleContent() {
-        const detailsDiv = document.getElementById('research-details');
-        const toggleText = document.getElementById('toggle-text');
-        
-        if (detailsDiv.style.display === 'none') {
-          detailsDiv.style.display = 'block';
-          toggleText.textContent = '[ minimize ]';
-        } else {
-          detailsDiv.style.display = 'none';
-          toggleText.textContent = ' [ maximize ]';
-        }
-      }
+      (function () {
+        var button = document.getElementById('toggle-pub-details');
+        var list = document.getElementById('publist');
+        if (!button || !list) return;
+
+        button.addEventListener('click', function () {
+          var showing = list.classList.toggle('show-details');
+          button.setAttribute('aria-pressed', showing ? 'true' : 'false');
+          button.textContent = showing ? 'Hide details' : 'Show details';
+        });
+      })();
     </script>
   </body>
 </html>
